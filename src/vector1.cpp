@@ -1,5 +1,5 @@
 #include "vector1.h"
-
+//private
 int* vector1::rewrite_append(int a)
 {
     int* ret = new int[size1 + how_add];
@@ -24,6 +24,7 @@ int* vector1::rewrite(int size, int first_index){
     delete(tab);
     return ret;
 }
+//public
 vector1::vector1(){
     tab = new int[10];
     vector1::how_add = 10;
