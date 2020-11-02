@@ -40,6 +40,7 @@ bool vector1::append(int a)
     }
     tab = rewrite_append(a);
     return true;
+
 }
 int vector1::size(){
     return last_index + 1;
