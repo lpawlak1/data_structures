@@ -1,5 +1,3 @@
-//projektowanie vectora
-//wzozec strategia
 #include <iostream>
 #include "vector1.h"
 using namespace std;

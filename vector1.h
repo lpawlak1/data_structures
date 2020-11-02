@@ -21,5 +21,4 @@ class vector1{
         int size1;
         int* rewrite_append(int a);
         int* rewrite(int size, int first_index);
-        
 };
