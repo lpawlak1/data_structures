@@ -1,9 +1,8 @@
 #include <iostream>
-#include "vector1.h"
-using namespace std;
+#include "vector.h"
 
 int main(){
-    vector1 a;
+    vector a;
     a.append(1);
     a.clear();
     if(!a.empty()){
