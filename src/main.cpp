@@ -3,7 +3,7 @@
 
 int main(){
     vector a;
-    a.append(1);
+    a.push_back(1);
     a.clear();
     if(!a.empty()){
         printf("%d",a.get(0));

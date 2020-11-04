@@ -1,7 +1,6 @@
 class vector{
     public:
         vector();
-        bool append(int a);
         int size();
         int get(int index);
         bool push_back(int value);
@@ -21,4 +20,5 @@ class vector{
         int container_size_;
         int* rewrite_append(int a);
         int* rewrite(int size, int first_index);
+        bool append(int a);
 };

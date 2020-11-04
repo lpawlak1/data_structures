@@ -1,4 +1,5 @@
 #include "vector.h"
+
 //private
 int* vector::rewrite_append(int a)
 {
@@ -12,6 +13,7 @@ int* vector::rewrite_append(int a)
     delete(tab_);
     return ret;
 }
+
 int* vector::rewrite(int new_size, int first_index){
     int* ret = new int[new_size];
     int j = 0;
@@ -24,13 +26,7 @@ int* vector::rewrite(int new_size, int first_index){
     delete(tab_);
     return ret;
 }
-//public
-vector::vector(){
-    tab_ = new int[10];
-    vector::how_add_ = 10;
-    vector::container_size_ = 10;
-    vector::last_index_ = -1;
-}
+
 bool vector::append(int a)
 {
     if (container_size_ > last_index_+1)
@@ -41,11 +37,21 @@ bool vector::append(int a)
     }
     tab_ = rewrite_append(a);
     return true;
-
 }
+
+
+//public
+vector::vector(){
+    vector::container_size_ = 10;
+    tab_ = new int[vector::container_size_];
+    vector::how_add_ = 10;
+    vector::last_index_ = -1;
+}
+
 int vector::size(){
     return last_index_ + 1;
 }
+
 int vector::get(int index){
     if (index >=0 && index <= last_index_)
     {
@@ -55,12 +61,15 @@ int vector::get(int index){
         return 0;
     }
 }
+
 bool vector::push_back(int value){
     return append(value);
 }
+
 bool vector::push_front(int value){
     return insert(0,value);
 }
+
 bool vector::insert(int index,int value){
     if (index >= 0 && index <= last_index_){
         int i = index;
@@ -79,6 +88,7 @@ bool vector::insert(int index,int value){
     }
     return true;
 }
+
 bool vector::pop(int index){
     if (index >= 0 && index < last_index_){
         int i = index;
@@ -90,12 +100,15 @@ bool vector::pop(int index){
     }
     return true;
 }
+
 bool vector::pop_back(){
     return pop(last_index_);
 }
+
 bool vector::pop_front(){
     return pop(0);
 }
+
 bool vector::empty(){
     if (last_index_ == -1)
     {
@@ -105,6 +118,7 @@ bool vector::empty(){
         return false; 
     }
 }
+
 bool vector::shrink(int size, int first_index){
     if (first_index > last_index_)
     {
@@ -117,6 +131,7 @@ bool vector::shrink(int size, int first_index){
     }
     return 1;
 }
+
 bool vector::shrink_to_fit(){
     if (last_index_ + 1 != container_size_)
     {
@@ -124,6 +139,7 @@ bool vector::shrink_to_fit(){
     }
     return true;
 }
+
 bool vector::clear(){
     delete(tab_);
     tab_ = new int[how_add_];
