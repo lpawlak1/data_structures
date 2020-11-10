@@ -1,6 +1,7 @@
 #include "vector.h"
 
-//private
+
+//* private
 int* vector::rewrite_append(int a)
 {
     int* ret = new int[container_size_ + how_add_];
@@ -10,7 +11,7 @@ int* vector::rewrite_append(int a)
     container_size_ += how_add_;
     ret[last_index_+1] = a;
     last_index_+=1;
-    delete(tab_);
+    delete [] tab_;
     return ret;
 }
 
@@ -23,7 +24,7 @@ int* vector::rewrite(int new_size, int first_index){
     }
     container_size_ = new_size;
     last_index_ = j-1;
-    delete(tab_);
+    delete [] tab_;
     return ret;
 }
 
@@ -39,8 +40,7 @@ bool vector::append(int a)
     return true;
 }
 
-
-//public
+//* public
 vector::vector(){
     vector::container_size_ = 10;
     tab_ = new int[vector::container_size_];
@@ -141,7 +141,7 @@ bool vector::shrink_to_fit(){
 }
 
 bool vector::clear(){
-    delete(tab_);
+    delete [] tab_;
     tab_ = new int[how_add_];
     container_size_ = how_add_;
     last_index_ = -1;
