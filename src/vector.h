@@ -1,7 +1,8 @@
-class vector{
+#include "container.h"
+class vector : public container{
     public:
         vector();
-        int size();
+        vector(int initial_size);
         int get(int index);
         bool push_back(int value);
         bool push_front(int value);
@@ -9,16 +10,12 @@ class vector{
         bool pop(int index);
         bool pop_back();
         bool pop_front();
-        bool empty();
         bool shrink(int size, int first_index);
         bool shrink_to_fit();
         bool clear();
     private:
-        int how_add_;
-        int last_index_;
-        int* tab_;
-        int container_size_;
-        int* rewrite_append(int a);
+        bool append(int value);
+        int* rewrite_append(int value);
         int* rewrite(int size, int first_index);
-        bool append(int a);
+        
 };
