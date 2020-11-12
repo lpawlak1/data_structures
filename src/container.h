@@ -2,8 +2,8 @@ class container{
     public:
         int size() {return size_;};
         bool empty(){return (size_ == 0)? true : false;};
-        bool shrink_to_fit();
-        bool clear();
+        virtual bool shrink_to_fit() = 0;
+        virtual bool clear() = 0;
     protected:
         container(){};
         int* tab_;

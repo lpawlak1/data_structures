@@ -7,7 +7,6 @@ public:
     bool push(int value);
     int pop();
     int peak();
-protected:
 private:
     node* last_;
 };
