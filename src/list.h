@@ -1,21 +1,13 @@
-#include "container.h"
-class list : public container, public linker
+class list 
 {
-private:
-
-    /* data */
 public:
-    list(/* args */);
+    list();
     ~list();
-    virtual void insert();
-    virtual int get(int index);
-    virtual void push_front();
-    virtual void push_back();
-    virtual void pop_front();
-    virtual void pop_back();
-    virtual void pop();
-protected:
-    node* first = nullptr;
-    node* last = nullptr;
-
+    virtual void insert(int index, int value) = 0;
+    virtual int get(int index) = 0;
+    virtual void push_front(int value) = 0;
+    virtual void push_back(int value) = 0;
+    virtual int pop_front()  = 0 ;
+    virtual int pop_back() = 0;
+    virtual int pop(int index) = 0;
 };

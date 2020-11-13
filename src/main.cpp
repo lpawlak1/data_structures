@@ -3,10 +3,11 @@
 
 int main(){
     vector vec;
+    container *a = &vec;
     vec.push_back(1);
     vec.clear();
-    if(!vec.empty()){
-        printf("%d \n",vec.get(0));
+    if(vec.empty()){
+        printf("siema %d \n",vec.get(0));
     }
     vec.insert(0,12);
     vec.insert(0,2);
@@ -23,7 +24,11 @@ int main(){
     vec.push_back(12);
     vec.push_front(22);
     // * size = 3
-    printf("%d",vec.size());
+    a = &vec;
+    a->clear();
+    printf("a - size:%d",a->size());
+    printf("po clear ->%d",a->size());
+    printf("vec - size:%d",vec.size());
     vec.shrink_to_fit();
     vec.shrink(3,1);
     return 0;

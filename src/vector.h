@@ -1,21 +1,27 @@
-#include "container.h"
-class vector : public container{
-    public:
-        vector();
-        vector(int initial_size);
-        int get(int index);
-        bool push_back(int value);
-        bool push_front(int value);
-        bool insert(int index, int value);
-        bool pop(int index);
-        bool pop_back();
-        bool pop_front();
-        bool shrink(int size, int first_index);
-        bool shrink_to_fit();
-        bool clear();
-    private:
-        bool append(int value);
-        int* rewrite_append(int value);
-        int* rewrite(int size, int first_index);
-        
+#include "list.h"
+#include "array_container.h"
+class vector : public list, public array_container{
+
+public:
+//own
+    vector();
+    vector(int initial_size);
+//list
+    void insert(int index, int value) override;
+    int get(int index) override;
+    void push_back(int value) override;
+    void push_front(int value) override ;
+    int pop_front() override;
+    int pop_back() override;
+    int pop(int index) override;
+//container
+    bool clear() override;
+//array_container
+    bool shrink(int size, int first_index) override;
+    bool shrink_to_fit() override ;
+
+private:
+//array_contianer
+    int* rewrite_append(int value) override;
+    int* rewrite(int size, int first_index) override;
 };

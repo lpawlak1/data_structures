@@ -7,8 +7,9 @@ public:
     bool enqueue(int value);
     int dequeue();
     int peek();
-    bool is_full(){return size_ == container_size_;};
+//container
+    bool clear() override;
 protected:
-    node* first;
-    node* last;
+    node* first_;
+    node* last_;
 };

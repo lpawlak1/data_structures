@@ -1,12 +1,13 @@
 #include "container.h"
 
-class heap : public linker, public container{
+class stack : public linker, public container{
 public:
-    ~heap();
-    heap();
+    ~stack();
+    stack();
     bool push(int value);
     int pop();
     int peak();
+    bool clear() override;
 private:
     node* last_;
 };

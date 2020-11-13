@@ -1,81 +1,67 @@
 #include "vector.h"
 
-
 //* private
 int* vector::rewrite_append(int a)
 {
-    int* ret = new int[container_size_ + how_add_];
-    for (int i = 0;i < container_size_;i++){
-        ret[i] = tab_[i];
-    }
-    container_size_ += how_add_;
-    ret[last_index_+1] = a;
-    last_index_+=1;
-    delete [] tab_;
-    return ret;
+    int* tab =  this -> rewrite(container_size_*2,0);
+    this -> append(a);
+    return tab;
 }
 
 int* vector::rewrite(int new_size, int first_index){
     int* ret = new int[new_size];
     int j = 0;
-    for (int i = first_index;i < new_size && i <= last_index_;i++){
+    for (int i = first_index;i < new_size && i < size_;i++){
         ret[j] = tab_[i];
         j+=1;
     }
     container_size_ = new_size;
-    last_index_ = j-1;
+    size_ = j;
     delete [] tab_;
     return ret;
 }
 
-bool vector::append(int a)
+bool vector::append(int value)
 {
-    if (container_size_ > last_index_+1)
-    {
-        tab_[last_index_+1] = a;
-        last_index_ += 1;
-        return true;
-    }
-    tab_ = rewrite_append(a);
-    return true;
 }
 
 //* public
 vector::vector(){
-    vector::container_size_ = 10;
-    tab_ = new int[vector::container_size_];
-    vector::how_add_ = 10;
-    vector::last_index_ = -1;
-}
-
-int vector::size(){
-    return last_index_ + 1;
+    container_size_ = 10;
+    tab_ = new int[container_size_];
+    size_ = 0;
 }
 
 int vector::get(int index){
-    if (index >=0 && index <= last_index_)
-    {
+    if (index >=0 && index <= size_){
         return tab_[index];
     }
     else{
-        return 0;
+        throw 123;
     }
 }
 
-bool vector::push_back(int value){
-    return append(value);
+void vector::push_back(int value){
+    //todo load factor
+    if (container_size_ > size_)
+    {
+        tab_[size_] = value;
+        size_ += 1;
+        return; 
+    }
+    tab_ = rewrite_append(value);
 }
 
-bool vector::push_front(int value){
+void vector::push_front(int value){
     return insert(0,value);
 }
 
-bool vector::insert(int index,int value){
-    if (index >= 0 && index <= last_index_){
+void vector::insert(int index,int value){
+    if (index >= 0 && index < size_){
         int i = index;
         int temp = value;
         int temp2 = 0;
-        while(i<=last_index_){
+        while(i<size_){
             temp2 = tab_[i];
             tab_[i] = temp;
             temp = temp2;
@@ -83,67 +69,60 @@ bool vector::insert(int index,int value){
         }
         append(temp);
     }
-    else if (index == 0 && last_index_ == -1){
-        append(value);    
+    else if (index == 0 && size_ == 0){
+        append(value);
     }
-    return true;
 }
 
-bool vector::pop(int index){
-    if (index >= 0 && index < last_index_){
+int vector::pop(int index){
+    if (index >= 0 && index < size_){
         int i = index;
-        while(i<last_index_){
+        while(i<size_-1){
             tab_[i] = tab_[i+1];
             i+=1;
         }
-        last_index_--;
+        size_--;
     }
     return true;
 }
 
-bool vector::pop_back(){
-    return pop(last_index_);
+int vector::pop_back(){
+    return pop(size_-1);
 }
 
-bool vector::pop_front(){
+int vector::pop_front(){
     return pop(0);
 }
 
-bool vector::empty(){
-    if (last_index_ == -1)
-    {
-        return true;
-    }
-    else{
-        return false; 
-    }
-}
-
 bool vector::shrink(int size, int first_index){
-    if (first_index > last_index_)
+    if (first_index >= size_)
     {
         return false;
     }
-    if(container_size_ > last_index_+1){
-        vector::tab_ = vector::rewrite(size,first_index);
-        vector::container_size_ = size;
-        vector::last_index_ = size-1;
+    if(container_size_ > size_){
+        tab_ = vector::rewrite(size,first_index);
+        container_size_ = size;
+        size_ = size;
     }
     return 1;
 }
 
 bool vector::shrink_to_fit(){
-    if (last_index_ + 1 != container_size_)
+    if (size_==0)
     {
-        return shrink(last_index_+1,0);
+        delete [] tab_;
+        tab_ = new int[initial_size_];
+    }
+    if (size_ != container_size_)
+    {
+        return this->shrink(size_,0);
     }
     return true;
 }
 
 bool vector::clear(){
     delete [] tab_;
-    tab_ = new int[how_add_];
-    container_size_ = how_add_;
-    last_index_ = -1;
+    tab_ = new int[initial_size_];
+    size_ = 0;
     return 1;
 }
