@@ -18,5 +18,12 @@ public:
 protected:
     node* first_ = nullptr;
     node* last_ = nullptr;
+private:
+    bool has_next(node* curr);
+    bool has_previous(node* curr);
+    int last_index(){return size_-1;};
+    void put_first(int value);
+    int pop_last();
+    node* find_node(int index);
 };
 
