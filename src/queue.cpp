@@ -1,18 +1,21 @@
 #include "queue.h"
-queue::queue(){
+templ
+queue<T>::queue(){
     last_ =nullptr;
     first_ =nullptr;
 }
-queue::~queue(){
-    node* n = first_;
+templ
+queue<T>::~queue(){
+    node<T>* n = first_;
     while(size_ > 0){
        n = first_->next; 
        delete first_;
        size_--;
     }
 }
-bool queue::enqueue(int value){
-    node* n = new node();
+templ
+bool queue<T>::enqueue(T value){
+    node<T>* n = new node<T>();
     n->value = value;
     size_++;
     if (last_ == nullptr and first_ ==nullptr)
@@ -27,10 +30,11 @@ bool queue::enqueue(int value){
     }
     return true;
 }
-int queue::dequeue(){
+templ
+T queue<T>::dequeue(){
     if (!empty())
     {
-        int ret = first_ -> value;
+        T ret = first_ -> value;
         first_ = first_ -> next;
         size_--;
         return ret;
@@ -40,7 +44,8 @@ int queue::dequeue(){
         throw -2137;
     }
 }
-int queue::peek(){
+templ
+T queue<T>::peek(){
     if (!empty())
     {
         return first_->value;

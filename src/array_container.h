@@ -5,7 +5,7 @@ public:
     virtual bool shrink_to_fit();
 protected:
     array_container(){};
-    ~array_container(){};
+    ~array_container(){delete tab_;};
 //methods
     virtual int* rewrite_append(int value);
     virtual int* rewrite(int size, int first_index);

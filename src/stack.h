@@ -1,13 +1,13 @@
 #include "container.h"
-
-class stack : public linker, public container{
+templ
+class stack : public container{
 public:
     ~stack();
     stack();
-    bool push(int value);
-    int pop();
-    int peak();
+    bool push(T value);
+    T pop();
+    T peak();
     bool clear() override;
 private:
-    node* last_;
+    node<T>* last_;
 };

@@ -1,26 +1,30 @@
 #include "stack.h"
 
-stack::stack(){
+
+templ
+stack<T>::stack(){
     size_ = 0;
     last_=nullptr;
 }
-stack::~stack(){
-    node* nod = last_;
+templ
+stack<T>::~stack(){
+    node<T>* nod = last_;
     while (size_ > 0){
         nod = last_->previous;
         delete last_;
         size_--;
     }
 }
-int stack::pop(){
+templ
+T stack<T>::pop(){
     if (empty())
     {
         throw -20;
     }
     else
     {
-        int ret = last_->value;
-        node* nod = last_;
+        T ret = last_->value;
+        node<T>* nod = last_;
         last_ = last_->previous;
         delete nod;
         size_--;
@@ -28,8 +32,9 @@ int stack::pop(){
     }
     return -1; 
 }
-bool stack::push(int value){
-    node* n = new node();
+templ
+bool stack<T>::push(T value){
+    node<T>* n = new node<T>();
     n->value = value;
     if (last_ == nullptr)
     {
@@ -43,6 +48,22 @@ bool stack::push(int value){
     size_++;
     return true;
 }
-int stack::peak(){
+templ
+T stack<T>::peak(){
     return last_->value;
 }
+templ
+bool stack<T>::clear(){
+    while (size_ > 0)
+    {
+        node<T>* curr = last_;
+        last_ = last_->previous;
+        delete curr;
+        size_--;
+    }
+    return true;
+}
+
+
+//troche bruteforce jak na moje ale cóż :/
+template class stack<int>;
