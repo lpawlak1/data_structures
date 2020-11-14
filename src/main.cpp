@@ -7,7 +7,7 @@ int main(){
     vec.push_back(1);
     vec.clear();
     if(vec.empty()){
-        printf("siema %d \n",vec.get(0));
+        printf(" %d \n",vec.get(0));
     }
     vec.insert(0,12);
     vec.insert(0,2);

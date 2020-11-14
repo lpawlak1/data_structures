@@ -1,11 +1,11 @@
 #include "list.h"
 #include "array_container.h"
 class vector : public list, public array_container{
-
 public:
 //own
     vector();
     vector(int initial_size);
+    ~vector(){};
 //list
     void insert(int index, int value) override;
     int get(int index) override;
@@ -20,7 +20,7 @@ public:
     bool shrink(int size, int first_index) override;
     bool shrink_to_fit() override ;
 
-private:
+protected:
 //array_contianer
     int* rewrite_append(int value) override;
     int* rewrite(int size, int first_index) override;

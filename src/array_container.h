@@ -1,12 +1,14 @@
 #include "container.h"
 class array_container : public container{
+public:
+    virtual bool shrink(int size, int first_index);
+    virtual bool shrink_to_fit();
 protected:
     array_container(){};
+    ~array_container(){};
 //methods
     virtual int* rewrite_append(int value);
     virtual int* rewrite(int size, int first_index);
-    virtual bool shrink(int size, int first_index);
-    virtual bool shrink_to_fit();
 //properties
     int* tab_;
     int container_size_ = 5;

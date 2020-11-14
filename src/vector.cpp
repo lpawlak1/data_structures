@@ -4,7 +4,7 @@
 int* vector::rewrite_append(int a)
 {
     int* tab =  this -> rewrite(container_size_*2,0);
-    this -> append(a);
+    this -> push_back(a);
     return tab;
 }
 
@@ -21,9 +21,6 @@ int* vector::rewrite(int new_size, int first_index){
     return ret;
 }
 
-bool vector::append(int value)
-{
-}
 
 //* public
 vector::vector(){
@@ -67,10 +64,10 @@ void vector::insert(int index,int value){
             temp = temp2;
             i+=1;
         }
-        append(temp);
+        push_back(temp);
     }
     else if (index == 0 && size_ == 0){
-        append(value);
+        push_back(value);
     }
 }
 
