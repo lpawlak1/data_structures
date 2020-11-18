@@ -1,6 +1,7 @@
 #include "list.h"
 #include "container.h"
-class link_vector : public list,protected linker, public container
+templ
+class link_vector : public list, public container
 {
 public:
     link_vector();
@@ -16,14 +17,14 @@ public:
     int pop_back() override;
     int pop(int index) override;
 protected:
-    node* first_ = nullptr;
-    node* last_ = nullptr;
+    node<T>* first_ = nullptr;
+    node<T>* last_ = nullptr;
 private:
-    bool has_next(node* curr);
-    bool has_previous(node* curr);
+    bool has_next(node<T>* curr);
+    bool has_previous(node<T>* curr);
     int last_index(){return size_-1;};
     void put_first(int value);
     int pop_last();
-    node* find_node(int index);
+    node<T>* find_node(int index);
 };
 

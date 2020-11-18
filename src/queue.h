@@ -14,3 +14,5 @@ protected:
     node<T>* first_;
     node<T>* last_;
 };
+
+

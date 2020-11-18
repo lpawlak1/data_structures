@@ -1,8 +1,9 @@
 #include "link_vector.h"
 //container
-bool link_vector::clear()
+templ
+bool link_vector<T>::clear()
 {
-    node* curr = first_;
+    node<T>* curr = first_;
     while (has_next(curr)){
         curr = curr->next;
         delete curr;
@@ -14,7 +15,8 @@ bool link_vector::clear()
     return true;
 }
 //list
-void link_vector::insert(int index, int value)
+templ
+void link_vector<T>::insert(int index, int value)
 {
     if (index == 0)
     {
@@ -30,15 +32,16 @@ void link_vector::insert(int index, int value)
     }
     else
     {
-        node* new_node = new node();
+        node<T>* new_node = new node<T>();
         new_node->value = value;
-        node* curr = find_node(index);
+        node<T>* curr = find_node(index);
         new_node->next = curr;
         curr->previous = new_node;
         size_++;
     }
 }
-int link_vector::get(int index)
+templ
+int link_vector<T>::get(int index)
 {
     if(index < 0 || index >= size_)
     {
@@ -46,21 +49,23 @@ int link_vector::get(int index)
     }
     return find_node(index)->value;
 }
-void link_vector::push_front(int value)
+templ
+void link_vector<T>::push_front(int value)
 {
     if (size_ == 0)
     {
         put_first(value);
         return;
     }
-    node* new_node = new node();
+    node<T>* new_node = new node<T>();
     new_node->value = value;
     first_->previous = new_node; 
     new_node->next = first_;
     first_ = new_node;
     size_++;
 }
-void link_vector::push_back(int value)
+templ
+void link_vector<T>::push_back(int value)
 {
     if (size_ == 0)
     {
@@ -68,14 +73,15 @@ void link_vector::push_back(int value)
         return;
     }
     
-    node* new_node = new node();
+    node<T>* new_node = new node<T>();
     new_node->value = value;
     last_->next = new_node; 
     new_node->previous = last_;
     last_ = new_node;
     size_++;
 }
-int link_vector::pop_front(){
+templ
+int link_vector<T>::pop_front(){
     if (empty())
     {
         return -20;
@@ -85,14 +91,15 @@ int link_vector::pop_front(){
         return pop_last();
     }
     int ret = first_->value;
-    node* for_delete = first_;
+    node<T>* for_delete = first_;
     first_->next->previous = nullptr;
     first_ = first_->next;
     delete for_delete;
     size_--;
     return ret;
 }
-int link_vector::pop_back()
+templ
+int link_vector<T>::pop_back()
 {
     if (empty())
     {
@@ -103,14 +110,15 @@ int link_vector::pop_back()
         return pop_last();
     }
     int ret = last_->value;
-    node* for_delete = last_;
+    node<T>* for_delete = last_;
     last_->previous->next = nullptr;
     last_ = last_->previous;
     delete for_delete;
     size_--; 
     return ret;
 }
-int link_vector::pop(int index)
+templ
+int link_vector<T>::pop(int index)
 {
     if (index == 0)
     {
@@ -124,7 +132,7 @@ int link_vector::pop(int index)
     {
         return -20;
     }
-    node* curr = find_node(index);
+    node<T>* curr = find_node(index);
     int ret = curr->value;
     curr->previous->next = curr->next;
     curr->next->previous = curr->previous;
@@ -133,41 +141,47 @@ int link_vector::pop(int index)
     return ret;
 }
 //own
-link_vector::link_vector(){
+templ
+link_vector<T>::link_vector(){
     size_ =0;
 }
-link_vector::~link_vector(){
+templ
+link_vector<T>::~link_vector(){
     while (size_ >0){
-        node* curr = last_;
+        node<T>* curr = last_;
         last_ = curr->previous;
         delete curr;
         size_--;
     }
     
 }
-bool link_vector::has_next(node* curr)
+templ
+bool link_vector<T>::has_next(node<T>* curr)
 {
     return (curr->next == nullptr)?false:true;
 }
-bool link_vector::has_previous(node* curr)
+templ
+bool link_vector<T>::has_previous(node<T>* curr)
 {
     return (curr->previous == nullptr)?false:true;
 }
-void link_vector::put_first(int value)
+templ
+void link_vector<T>::put_first(int value)
 {
     if (size_ != 0)
     {
         return;
     }
-    node* curr = new node();
+    node<T>* curr = new node<T>();
     curr->value = value;
     first_ = curr;
     last_ = curr;
     size_++;
 }
-linker::node* link_vector::find_node(int index)
+templ
+node<T>* link_vector<T>::find_node(int index)
 {
-    node* curr = nullptr;
+    node<T>* curr = nullptr;
     if (size_-index >= index)
     {
         curr = last_;
@@ -190,7 +204,8 @@ linker::node* link_vector::find_node(int index)
     }
     return curr;
 }
-int link_vector::pop_last()
+templ
+int link_vector<T>::pop_last()
 {
     if (size_ != 1)
     {
@@ -203,3 +218,5 @@ int link_vector::pop_last()
     size_ = 0 ;
     return ret;
 }
+
+template class link_vector<int>;

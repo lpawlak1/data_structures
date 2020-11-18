@@ -52,3 +52,6 @@ T queue<T>::peek(){
     }
     return -8976756;
 }
+
+
+template class queue<int>;
