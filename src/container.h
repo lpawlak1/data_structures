@@ -1,4 +1,3 @@
-
 class container{
     public:
         int size() {return size_;};
@@ -9,19 +8,8 @@ class container{
         ~container(){};
         int size_;
 };
-template<typename T>
-struct node{
+template<typename T> struct node{
     T value;
     struct node* next = nullptr;
     struct node* previous = nullptr;
 };
-// class linker{
-// protected:
-//     linker(){};
-//     ~linker(){};
-//     struct node{
-//         T value;
-//         struct node* next = nullptr;
-//         struct node* previous = nullptr;
-//     };
-// };
