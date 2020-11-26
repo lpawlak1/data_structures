@@ -1,6 +1,6 @@
 #include "container.h"
 
-templ
+template<typename T>
 class queue : public container{
 public:
     ~queue();

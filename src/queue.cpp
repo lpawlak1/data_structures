@@ -1,10 +1,10 @@
 #include "queue.h"
-templ
+template<typename T>
 queue<T>::queue(){
     last_ =nullptr;
     first_ =nullptr;
 }
-templ
+template<typename T>
 queue<T>::~queue(){
     node<T>* n = first_;
     while(size_ > 0){
@@ -13,7 +13,7 @@ queue<T>::~queue(){
        size_--;
     }
 }
-templ
+template<typename T>
 bool queue<T>::enqueue(T value){
     node<T>* n = new node<T>();
     n->value = value;
@@ -30,7 +30,7 @@ bool queue<T>::enqueue(T value){
     }
     return true;
 }
-templ
+template<typename T>
 T queue<T>::dequeue(){
     if (!empty())
     {
@@ -44,7 +44,7 @@ T queue<T>::dequeue(){
         throw -2137;
     }
 }
-templ
+template<typename T>
 T queue<T>::peek(){
     if (!empty())
     {

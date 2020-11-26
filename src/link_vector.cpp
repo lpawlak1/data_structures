@@ -1,6 +1,6 @@
 #include "link_vector.h"
 //container
-templ
+template<typename T>
 bool link_vector<T>::clear()
 {
     node<T>* curr = first_;
@@ -15,7 +15,7 @@ bool link_vector<T>::clear()
     return true;
 }
 //list
-templ
+template<typename T>
 void link_vector<T>::insert(int index, int value)
 {
     if (index == 0)
@@ -40,7 +40,7 @@ void link_vector<T>::insert(int index, int value)
         size_++;
     }
 }
-templ
+template<typename T>
 int link_vector<T>::get(int index)
 {
     if(index < 0 || index >= size_)
@@ -49,7 +49,7 @@ int link_vector<T>::get(int index)
     }
     return find_node(index)->value;
 }
-templ
+template<typename T>
 void link_vector<T>::push_front(int value)
 {
     if (size_ == 0)
@@ -64,7 +64,7 @@ void link_vector<T>::push_front(int value)
     first_ = new_node;
     size_++;
 }
-templ
+template<typename T>
 void link_vector<T>::push_back(int value)
 {
     if (size_ == 0)
@@ -80,7 +80,7 @@ void link_vector<T>::push_back(int value)
     last_ = new_node;
     size_++;
 }
-templ
+template<typename T>
 int link_vector<T>::pop_front(){
     if (empty())
     {
@@ -98,7 +98,7 @@ int link_vector<T>::pop_front(){
     size_--;
     return ret;
 }
-templ
+template<typename T>
 int link_vector<T>::pop_back()
 {
     if (empty())
@@ -117,7 +117,7 @@ int link_vector<T>::pop_back()
     size_--; 
     return ret;
 }
-templ
+template<typename T>
 int link_vector<T>::pop(int index)
 {
     if (index == 0)
@@ -141,11 +141,11 @@ int link_vector<T>::pop(int index)
     return ret;
 }
 //own
-templ
+template<typename T>
 link_vector<T>::link_vector(){
     size_ =0;
 }
-templ
+template<typename T>
 link_vector<T>::~link_vector(){
     while (size_ >0){
         node<T>* curr = last_;
@@ -155,17 +155,17 @@ link_vector<T>::~link_vector(){
     }
     
 }
-templ
+template<typename T>
 bool link_vector<T>::has_next(node<T>* curr)
 {
     return (curr->next == nullptr)?false:true;
 }
-templ
+template<typename T>
 bool link_vector<T>::has_previous(node<T>* curr)
 {
     return (curr->previous == nullptr)?false:true;
 }
-templ
+template<typename T>
 void link_vector<T>::put_first(int value)
 {
     if (size_ != 0)
@@ -178,7 +178,7 @@ void link_vector<T>::put_first(int value)
     last_ = curr;
     size_++;
 }
-templ
+template<typename T>
 node<T>* link_vector<T>::find_node(int index)
 {
     node<T>* curr = nullptr;
@@ -204,7 +204,7 @@ node<T>* link_vector<T>::find_node(int index)
     }
     return curr;
 }
-templ
+template<typename T>
 int link_vector<T>::pop_last()
 {
     if (size_ != 1)

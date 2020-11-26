@@ -1,5 +1,5 @@
 #include "container.h"
-templ
+template<typename T>
 class stack : public container{
 public:
     ~stack();

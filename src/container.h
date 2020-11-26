@@ -1,4 +1,3 @@
-#define templ template<typename T>
 
 class container{
     public:
@@ -10,7 +9,7 @@ class container{
         ~container(){};
         int size_;
 };
-templ
+template<typename T>
 struct node{
     T value;
     struct node* next = nullptr;

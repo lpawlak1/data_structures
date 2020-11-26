@@ -1,6 +1,6 @@
 #include "list.h"
 #include "container.h"
-templ
+template<typename T>
 class link_vector : public list, public container
 {
 public:

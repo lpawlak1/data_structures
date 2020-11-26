@@ -1,12 +1,12 @@
 #include "stack.h"
 
 
-templ
+template<typename T>
 stack<T>::stack(){
     size_ = 0;
     last_=nullptr;
 }
-templ
+template<typename T>
 stack<T>::~stack(){
     node<T>* nod = last_;
     while (size_ > 0){
@@ -15,7 +15,7 @@ stack<T>::~stack(){
         size_--;
     }
 }
-templ
+template<typename T>
 T stack<T>::pop(){
     if (empty())
     {
@@ -32,7 +32,7 @@ T stack<T>::pop(){
     }
     return -1; 
 }
-templ
+template<typename T>
 bool stack<T>::push(T value){
     node<T>* n = new node<T>();
     n->value = value;
@@ -48,11 +48,11 @@ bool stack<T>::push(T value){
     size_++;
     return true;
 }
-templ
+template<typename T>
 T stack<T>::peak(){
     return last_->value;
 }
-templ
+template<typename T>
 bool stack<T>::clear(){
     while (size_ > 0)
     {
@@ -65,5 +65,4 @@ bool stack<T>::clear(){
 }
 
 
-//troche bruteforce jak na moje ale cóż :/
 template class stack<int>;
