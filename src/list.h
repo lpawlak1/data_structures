@@ -1,13 +1,13 @@
-class list 
+template<typename T> class list
 {
 public:
-    virtual void insert(int index, int value) = 0;
-    virtual int get(int index) = 0;
-    virtual void push_front(int value) = 0;
-    virtual void push_back(int value) = 0;
-    virtual int pop_front()  = 0 ;
-    virtual int pop_back() = 0;
-    virtual int pop(int index) = 0;
+    virtual void insert(int index, T value) = 0;
+    virtual T get(int index) = 0;
+    virtual void push_front(T value) = 0;
+    virtual void push_back(T value) = 0;
+    virtual T pop_front()  = 0 ;
+    virtual T pop_back() = 0;
+    virtual T pop(int index) = 0;
 protected:
     list(){};
     ~list(){};
