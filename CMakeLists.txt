@@ -11,7 +11,6 @@ add_executable(data_structures
         src/link_vector.h
         src/list.h
         src/main.cpp
-        src/queue.cpp
         src/queue.h
         src/stack.cpp
         src/stack.h
@@ -25,3 +24,6 @@ add_executable(linker_vector
 add_executable(vector_test
         src/vector.h
         tests/vector_test.cpp)
+add_executable(queue_test
+        src/queue.h
+        tests/queue_test.cpp)
