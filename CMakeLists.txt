@@ -1,31 +1,16 @@
 cmake_minimum_required(VERSION 3.17)
-project(data_structures)
+project(data_structure)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(src)
-
-add_executable(data_structures
-        src/array_container.h
+file(GLOB SOURCES "src/*.h")
+set(LINK_VECTOR
+        src/link_vector.h
         src/container.h
-        src/link_vector.h
-        src/list.h
-        src/main.cpp
-        src/queue.h
-        src/stack.h
-        src/vector.h
-        tests/link_vector_test.cpp
-        tests/stack_test.cpp
-        )
-add_executable(linker_vector
-        src/link_vector.h
-        tests/link_vector_test.cpp )
-add_executable(vector_test
-        src/vector.h
-        tests/vector_test.cpp)
-add_executable(queue_test
-        src/queue.h
-        tests/queue_test.cpp)
-add_executable(stack_test
-        src/stack.h
-        tests/stack_test.cpp)
+        src/list.h)
+
+
+add_subdirectory(lib/googletest)
+add_subdirectory(src)
+add_subdirectory(tests)

@@ -34,11 +34,12 @@ template<typename T> bool link_vector<T>::clear()
         return true;
     }
     node<T>* curr = first_;
+    node<T>* prev = nullptr;
     while (has_next(curr)){
         curr = curr->next;
-        delete curr;
+        prev = curr-> previous;
+        delete prev;
     }
-    delete curr;
     size_ = 0;
     first_ = nullptr;
     last_ = nullptr;
