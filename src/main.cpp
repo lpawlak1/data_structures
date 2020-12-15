@@ -1,35 +1,10 @@
-#include <iostream>
-#include "vector.h"
-
+#include "link_vector.h"
 int main(){
-    vector vec;
-    container *a = &vec;
-    vec.push_back(1);
-    vec.clear();
-    if(vec.empty()){
-        printf(" %d \n",vec.get(0));
+    link_vector<int> linkVector;
+    for(auto i = 0; i < 2; i+=1){
+        linkVector.push_back(i);
+        linkVector.push_front(i);
     }
-    vec.insert(0,12);
-    vec.insert(0,2);
-    vec.insert(1,123);
-    vec.insert(1,2);
-    printf("%d \n",vec.size());
-    
-    for(int i = 0; i<vec.size();i++){
-        printf("%d, ",vec.get(i));
-    }
-    vec.pop(2);
-    vec.pop_back();
-    vec.pop_front();
-    vec.push_back(12);
-    vec.push_front(22);
-    // * size = 3
-    a = &vec;
-    a->clear();
-    printf("a - size:%d",a->size());
-    printf("po clear ->%d",a->size());
-    printf("vec - size:%d",vec.size());
-    vec.shrink_to_fit();
-    vec.shrink(3,1);
+    linkVector.clear();
     return 0;
 }
