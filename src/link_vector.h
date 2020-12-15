@@ -9,12 +9,12 @@ public:
     bool clear() override;
 //list
     void insert(int index,T value) override;
-    T get(int index) override;
     void push_front(T value) override;
     void push_back(T value) override;
     T pop_front() override;
     T pop_back() override;
     T pop(int index) override;
+    T operator[](int index) override;
 protected:
     node<T>* first_ = nullptr;
     node<T>* last_ = nullptr;
@@ -70,7 +70,7 @@ template<typename T> void link_vector<T>::insert(int index, T value)
         size_++;
     }
 }
-template<typename T> T link_vector<T>::get(int index)
+template<typename T> T link_vector<T>::operator[](int index)
 {
     if(index < 0 || index >= size_)
     {

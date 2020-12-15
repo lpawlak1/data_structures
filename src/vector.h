@@ -7,15 +7,15 @@ public:
     vector(int initial_size);
     vector(int initial_size,float load_factor);
     vector(float load_factor);
-    ~vector(){};
+    ~vector(){this -> clear();};
 //list
     void insert(int index, T value) override;
-    T get(int index) override;
     void push_back(T value) override;
     void push_front(T value) override ;
     T pop_front() override;
     T pop_back() override;
     T pop(int index) override;
+    T operator[](int index) override;
 //container
     bool clear() override;
 protected:
@@ -52,7 +52,7 @@ template<typename T> vector<T>::vector(int initial_size) : array_container<T>::a
 template<typename T> vector<T>::vector(int initial_size,float load_factor) : array_container<T>::array_container(initial_size,load_factor){}
 template<typename T> vector<T>::vector(float load_factor) : array_container<T>::array_container(load_factor){}
 
-template<typename T> T vector<T>::get(int index){
+template<typename T> T vector<T>::operator[](int index) {
     if (index >=0 && index <= container::size_){
         return array_container<T>::tab_[index];
     }
@@ -60,7 +60,6 @@ template<typename T> T vector<T>::get(int index){
         throw 123;
     }
 }
-
 template<typename T> void vector<T>::push_back(T value){
     //todo load factor
     if (array_container<T>::container_size_ > container::size_)
