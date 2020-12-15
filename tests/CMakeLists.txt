@@ -8,16 +8,10 @@ include_directories(headers)
 add_executable(tests_
         source_gtest.cpp
         ${SOURCES}
-        link_gtest.cpp headers/link_gtest.h)
-#add_executable(vector_test
-#        ../src/vector.h
-#        vector_test.cpp)
-#add_executable(queue_test
-#        ../src/queue.h
-#        queue_test.cpp)
-#add_executable(stack_test
-#        ../src/stack.h
-#        stack_test.cpp)
+        link_gtest.cpp headers/link_gtest.h
+        queue_gtest.cpp headers/queue_gtest.h
+        vector_gtest.cpp headers/vector_gtest.h)
+
 
 
 target_link_libraries(tests_ gtest gtest_main)

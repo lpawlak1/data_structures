@@ -5,10 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(src)
 file(GLOB SOURCES "src/*.h")
-set(LINK_VECTOR
-        src/link_vector.h
-        src/container.h
-        src/list.h)
 
 
 add_subdirectory(lib/googletest)
