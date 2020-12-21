@@ -13,7 +13,6 @@ vector<int> prepare_vector(){
     EXPECT_EQ(100,vector.size());
     return vector;
 }
-
 TEST(vector_test, push_test){
     vector<int> vector_;
     for(auto i = 0; i < 100; i+=1){
@@ -26,7 +25,6 @@ TEST(vector_test, pop_get_test){
     vector<int> vector_ = prepare_vector();
     EXPECT_EQ(99,vector_[vector_.size()-1]);
     EXPECT_EQ(0,vector_[0]);
-//    EXPECT_EQ(-1,vector_[1001]);
     EXPECT_EQ(99,vector_.pop_back());
     EXPECT_EQ(0,vector_.pop_front());
     EXPECT_EQ(1,vector_.pop(0));

@@ -1,4 +1,8 @@
+#ifndef STACK_HPP
+#define STACK_HPP
+
 #include "container.h"
+
 template<typename T> class stack : public container{
 public:
     ~stack();
@@ -15,14 +19,8 @@ template<typename T> stack<T>::stack(){
     last_=nullptr;
 }
 template<typename T> stack<T>::~stack(){
-    node<T>* nod = last_;
-    while (size_ > 0)
-    {
-        node<T>* curr = last_;
-        last_ = last_->previous;
-        delete curr;
-        size_--;
-    }
+    this->clear();
+    delete last_;
 }
 template<typename T> T stack<T>::pop(){
     if (empty())
@@ -67,3 +65,5 @@ template<typename T> bool stack<T>::clear(){
     }
     return true;
 }
+
+#endif

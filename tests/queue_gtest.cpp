@@ -5,7 +5,6 @@
 #include "queue_gtest.h"
 #include "queue.hpp"
 #include "gtest/gtest.h"
-#include "iostream"
 queue<int> prepare_queue(){
     queue<int> queue_;
     for(auto i =0;i<100;i++){

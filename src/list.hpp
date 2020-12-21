@@ -1,3 +1,6 @@
+#ifndef LIST_HPP
+#define LIST_HPP
+
 template<typename T> class list
 {
 public:
@@ -12,3 +15,5 @@ protected:
     list(){};
     ~list(){};
 };
+
+#endif

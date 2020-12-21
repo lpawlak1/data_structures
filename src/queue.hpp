@@ -1,3 +1,6 @@
+#ifndef QUEUE_HPP
+#define QUEUE_HPP
+
 #include "container.h"
 
 template<typename T> class queue : public container{
@@ -72,3 +75,5 @@ template<typename T> bool queue<T>::clear() {
     }
     return true;
 }
+
+#endif

@@ -1,5 +1,9 @@
+#ifndef LINK_VECTOR_HPP
+#define LINK_VECTOR_HPP
+
 #include "list.hpp"
 #include "container.h"
+
 template<typename T> class link_vector : public list<T>, public container
 {
 public:
@@ -234,3 +238,5 @@ template<typename T> T link_vector<T>::pop_last()
     size_ = 0 ;
     return ret;
 }
+
+#endif

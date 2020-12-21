@@ -1,3 +1,6 @@
+//container.h
+#ifndef ARRAY_CONTAINER_HPP
+#define ARRAY_CONTAINER_HPP
 #include "container.h"
 
 template<typename T> class array_container : public container{
@@ -27,3 +30,5 @@ template<typename T> array_container<T>::array_container(int initial_size,float 
     this -> load_factor_ = load_factor;
     this -> container::size_ = 0;
 }
+
+#endif

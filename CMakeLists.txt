@@ -4,7 +4,7 @@ project(data_structure)
 set(CMAKE_CXX_STANDARD 11)
 
 include_directories(src)
-file(GLOB SOURCES "src/*.h")
+file(GLOB SOURCES "src/*.hpp")
 
 
 add_subdirectory(lib/googletest)
