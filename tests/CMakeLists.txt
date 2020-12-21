@@ -10,7 +10,8 @@ add_executable(tests_
         ${SOURCES}
         link_gtest.cpp headers/link_gtest.h
         queue_gtest.cpp headers/queue_gtest.h
-        vector_gtest.cpp headers/vector_gtest.h)
+        vector_gtest.cpp headers/vector_gtest.h
+        stack_gtest.cpp headers/stack_gtest.h)
 
 
 

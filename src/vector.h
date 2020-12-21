@@ -94,7 +94,9 @@ template<typename T> void vector<T>::insert(int index,T value){
 }
 
 template<typename T> T vector<T>::pop(int index){
+    int ret = -1;
     if (index >= 0 && index < container::size_){
+        ret = array_container<T>::tab_[index];
         int i = index;
         while(i<container::size_-1){
             array_container<T>::tab_[i] = array_container<T>::tab_[i+1];
@@ -102,7 +104,7 @@ template<typename T> T vector<T>::pop(int index){
         }
         container::size_--;
     }
-    return true;
+    return ret;
 }
 
 template<typename T> T vector<T>::pop_back(){
