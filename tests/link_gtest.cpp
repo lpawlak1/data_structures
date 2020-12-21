@@ -3,7 +3,7 @@
 //
 
 #include "gtest/gtest.h"
-#include "link_vector.h"
+#include "link_vector.hpp"
 
 link_vector<int> prepare_link(){
     link_vector<int> linkVector;

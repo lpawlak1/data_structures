@@ -3,7 +3,7 @@
 //
 
 #include "stack_gtest.h"
-#include "stack.h"
+#include "stack.hpp"
 #include "gtest/gtest.h"
 
 stack<int> prepare_stack(){

@@ -2,7 +2,7 @@
 // Created by lukas on 15.12.2020.
 //
 #include "gtest/gtest.h"
-#include "vector.h"
+#include "vector.hpp"
 #include "vector_gtest.h"
 
 vector<int> prepare_vector(){

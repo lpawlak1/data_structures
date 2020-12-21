@@ -3,7 +3,7 @@
 //
 
 #include "queue_gtest.h"
-#include "queue.h"
+#include "queue.hpp"
 #include "gtest/gtest.h"
 #include "iostream"
 queue<int> prepare_queue(){
