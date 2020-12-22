@@ -13,7 +13,7 @@ public:
     vector(int initial_size,float load_factor);
     vector(float load_factor);
     ~vector(){this -> clear();};
-    vector<T>& operator=(link_vector<T>& a);
+
 //list
     void insert(int index, T value) override;
     void push_back(T value) override;
@@ -126,15 +126,6 @@ template<typename T> bool vector<T>::clear(){
     array_container<T>::tab_ = new T[array_container<T>::initial_size_];
     container::size_ = 0;
     return 1;
-}
-
-template<typename T>
-vector<T>& vector<T>::operator=(link_vector<T>& a) {
-    for (auto i=0;i<a.size();i++)
-    {
-        this->push_back(a[i]);
-    }
-    return *this;
 }
 
 #endif
