@@ -5,13 +5,13 @@
 #include "vector.hpp"
 #include "vector_gtest.h"
 
-vector<int> prepare_vector(){
-    vector<int> vector;
+vector<int>* prepare_vector(){
+    auto* vector_ = new vector<int>(100);
     for(auto i = 0; i < 100; i+=1){
-        vector.push_back(i);
+        vector_->push_back(i);
     }
-    EXPECT_EQ(100,vector.size());
-    return vector;
+    EXPECT_EQ(100,vector_->size());
+    return vector_;
 }
 TEST(vector_test, push_test){
     vector<int> vector_;
@@ -22,18 +22,20 @@ TEST(vector_test, push_test){
     EXPECT_EQ(200,vector_.size());
 }
 TEST(vector_test, pop_get_test){
-    vector<int> vector_ = prepare_vector();
-    EXPECT_EQ(99,vector_[vector_.size()-1]);
-    EXPECT_EQ(0,vector_[0]);
-    EXPECT_EQ(99,vector_.pop_back());
-    EXPECT_EQ(0,vector_.pop_front());
-    EXPECT_EQ(1,vector_.pop(0));
-    EXPECT_EQ(97,vector_.size());
-    vector_.clear();
+    vector<int>* vector_ = prepare_vector();
+    EXPECT_EQ(99,(*vector_)[vector_->size()-1]);
+    EXPECT_EQ(0,(*vector_)[0]);
+    EXPECT_EQ(99,vector_->pop_back());
+    EXPECT_EQ(0,vector_->pop_front());
+    EXPECT_EQ(1,vector_->pop(0));
+    EXPECT_EQ(97,vector_->size());
+    delete vector_;
 }
 TEST(vector_test, clear_test){
-    vector<int> vector_ = prepare_vector();
-    vector_.clear();
-    EXPECT_TRUE(vector_.empty());
-    EXPECT_EQ(0,vector_.size());
+    auto* vector_ = prepare_vector();
+    EXPECT_EQ(100,vector_->size());
+    vector_->clear();
+    EXPECT_TRUE(vector_->empty());
+    EXPECT_EQ(0,vector_->size());
+    delete vector_;
 }

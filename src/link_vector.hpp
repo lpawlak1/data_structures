@@ -3,6 +3,7 @@
 
 #include "list.hpp"
 #include "container.h"
+#include "vector.hpp"
 
 template<typename T> class link_vector : public list<T>, public container
 {
@@ -203,7 +204,7 @@ template<typename T> void link_vector<T>::put_first(T value)
 template<typename T> node<T>* link_vector<T>::find_node(int index)
 {
     node<T>* curr = nullptr;
-    if (size_-index >= index)
+    if (index*2 >= size_)
     {
         curr = last_;
         int i = last_index();
