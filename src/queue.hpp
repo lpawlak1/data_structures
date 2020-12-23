@@ -2,6 +2,7 @@
 #define QUEUE_HPP
 
 #include "container.h"
+#include "stdexcept"
 
 template<typename T> class queue : public container{
 public:

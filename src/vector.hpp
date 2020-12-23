@@ -4,6 +4,7 @@
 #include "list.hpp"
 #include "array_container.hpp"
 #include "link_vector.hpp"
+#include "stdexcept"
 
 template<typename T> class vector : public list<T>, public array_container<T>{
 public:

@@ -2,6 +2,7 @@
 #define STACK_HPP
 
 #include "container.h"
+#include "stdexcept"
 
 template<typename T> class stack : public container{
 public:

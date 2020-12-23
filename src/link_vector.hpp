@@ -4,6 +4,7 @@
 #include "list.hpp"
 #include "container.h"
 #include "vector.hpp"
+#include "stdexcept"
 
 template<typename T> class link_vector : public list<T>, public container
 {
