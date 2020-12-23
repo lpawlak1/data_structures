@@ -73,7 +73,6 @@ TEST(convert_test_link, vector)
     EXPECT_EQ(vec->size(),linkVector->size());
     EXPECT_EQ((*vec)[12],(*linkVector)[12]);
     EXPECT_EQ((*vec)[54],(*linkVector)[54]);
-    vec->clear();
     linkVector->clear();
     delete vec;
     delete linkVector;

@@ -29,6 +29,14 @@ TEST(vector_test, pop_get_test){
     EXPECT_EQ(0,vector_->pop_front());
     EXPECT_EQ(1,vector_->pop(0));
     EXPECT_EQ(97,vector_->size());
+    EXPECT_THROW((*vector_)[-1],std::out_of_range);
+    EXPECT_THROW((*vector_)[10000],std::out_of_range);
+    while(!(*vector_).empty())
+    {
+        vector_->pop_front();
+    }
+    EXPECT_THROW(vector_->pop_front(),std::out_of_range);
+    EXPECT_THROW(vector_->pop_back(),std::out_of_range);
     delete vector_;
 }
 TEST(vector_test, clear_test){

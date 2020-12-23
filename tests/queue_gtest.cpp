@@ -28,6 +28,12 @@ TEST(queue_test, peek_dequeue_test){
     EXPECT_EQ(1,queue_.peek());
     EXPECT_EQ(1,queue_.dequeue());
     EXPECT_EQ(98,queue_.size());
+    while(!queue_.empty())
+    {
+        queue_.dequeue();
+    }
+    EXPECT_ANY_THROW(queue_.dequeue());
+    EXPECT_ANY_THROW(queue_.peek());
     queue_.clear();
 }
 TEST(queue_test, clear_test){

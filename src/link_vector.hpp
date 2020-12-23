@@ -80,7 +80,7 @@ template<typename T> T link_vector<T>::operator[](int index)
 {
     if(index < 0 || index >= size_)
     {
-        throw std::invalid_argument("Index out of range.");
+        throw std::out_of_range("Index out of range.");
     }
     return find_node(index)->value;
 }
@@ -134,7 +134,7 @@ template<typename T> T link_vector<T>::pop_back()
 {
     if (empty())
     {
-        return -20;
+        throw std::length_error("Link vector is empty.");
     }
     else if (size_ == 1)
     {

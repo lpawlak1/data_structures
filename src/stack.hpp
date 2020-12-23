@@ -54,6 +54,10 @@ template<typename T> bool stack<T>::push(T value){
     return true;
 }
 template<typename T> T stack<T>::peek(){
+    if (empty())
+    {
+        throw std::length_error("Stack is empty");
+    }
     return last_->value;
 }
 template<typename T> bool stack<T>::clear(){

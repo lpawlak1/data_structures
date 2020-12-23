@@ -35,7 +35,8 @@ protected:
 template<typename T> T* vector<T>::rewrite_append(T a)
 {
     int* tab =  this -> rewrite(array_container<T>::container_size_*2,0);
-    this -> push_back(a);
+    tab[container::size_] = a;
+    container::size_++;
     return tab;
 }
 
@@ -53,7 +54,7 @@ template<typename T> T* vector<T>::rewrite(int new_size, int first_index){
 }
 
 //* public
-template<typename T> vector<T>::vector(){
+template<typename T> vector<T>::vector() : array_container<T>::array_container(){
 }
 template<typename T> vector<T>::vector(int initial_size) : array_container<T>::array_container(initial_size){}
 template<typename T> vector<T>::vector(int initial_size,float load_factor) : array_container<T>::array_container(initial_size,load_factor){}

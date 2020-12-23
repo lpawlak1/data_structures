@@ -30,6 +30,12 @@ TEST(stack_test, peek_pop_test){
     EXPECT_EQ(998,stack_.peek());
     EXPECT_EQ(998,stack_.pop());
     EXPECT_EQ(998,stack_.size());
+    while(!stack_.empty())
+    {
+        stack_.pop();
+    }
+    EXPECT_ANY_THROW(stack_.peek());
+    EXPECT_ANY_THROW(stack_.pop());
     stack_.clear();
 }
 TEST(stack_test, clear_test){
