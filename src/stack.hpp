@@ -25,7 +25,7 @@ template<typename T> stack<T>::~stack(){
 template<typename T> T stack<T>::pop(){
     if (empty())
     {
-        throw 20;
+        throw std::length_error("Stack is empty");
     }
     else
     {

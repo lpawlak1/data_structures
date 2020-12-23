@@ -59,7 +59,7 @@ template<typename T> void link_vector<T>::insert(int index, T value)
     }
     else if (index > size_ || index < 0)
     {
-        return;
+        throw std::invalid_argument("Index out of range.");
     }
     else if (index == size_)
     {
@@ -79,7 +79,7 @@ template<typename T> T link_vector<T>::operator[](int index)
 {
     if(index < 0 || index >= size_)
     {
-        return -20;
+        throw std::invalid_argument("Index out of range.");
     }
     return find_node(index)->value;
 }
@@ -115,7 +115,7 @@ template<typename T> void link_vector<T>::push_back(T value)
 template<typename T> T link_vector<T>::pop_front(){
     if (empty())
     {
-        return -20;
+        throw std::length_error("Link vector is empty.");
     }
     else if (size_ == 1)
     {
@@ -228,10 +228,6 @@ template<typename T> node<T>* link_vector<T>::find_node(int index)
 }
 template<typename T> T link_vector<T>::pop_last()
 {
-    if (size_ != 1)
-    {
-        return -20;
-    }
     T ret = first_->value;
     delete first_;
     first_ = nullptr;

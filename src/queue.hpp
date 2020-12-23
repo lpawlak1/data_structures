@@ -58,7 +58,7 @@ template<typename T> T queue<T>::dequeue(){
     }
     else
     {
-        throw -2137;
+        throw std::length_error("Queue is empty");
     }
 }
 template<typename T> T queue<T>::peek(){
@@ -66,7 +66,7 @@ template<typename T> T queue<T>::peek(){
     {
         return first_->value;
     }
-    return 0;
+    throw std::length_error("Queue is empty");
 }
 
 template<typename T> bool queue<T>::clear() {

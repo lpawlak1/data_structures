@@ -59,11 +59,11 @@ template<typename T> vector<T>::vector(int initial_size,float load_factor) : arr
 template<typename T> vector<T>::vector(float load_factor) : array_container<T>::array_container(load_factor){}
 
 template<typename T> T vector<T>::operator[](int index) {
-    if (index >=0 && index <= container::size_){
+    if (index >=0 && index < container::size_){
         return array_container<T>::tab_[index];
     }
     else{
-        throw 123;
+        throw std::out_of_range("Index out of range.");
     }
 }
 template<typename T> void vector<T>::push_back(T value){
@@ -97,6 +97,9 @@ template<typename T> void vector<T>::insert(int index,T value){
     else if (index == 0 && container::size_ == 0){
         push_back(value);
     }
+    else{
+        throw std::out_of_range("Index out of range.");
+    }
 }
 
 template<typename T> T vector<T>::pop(int index){
@@ -109,6 +112,10 @@ template<typename T> T vector<T>::pop(int index){
             i+=1;
         }
         container::size_--;
+    }
+    else
+    {
+        throw std::out_of_range("Index out of range.");
     }
     return ret;
 }
@@ -125,7 +132,7 @@ template<typename T> bool vector<T>::clear(){
     delete [] array_container<T>::tab_;
     array_container<T>::tab_ = new T[array_container<T>::initial_size_];
     container::size_ = 0;
-    return 1;
+    return true;
 }
 
 #endif
