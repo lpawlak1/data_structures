@@ -69,8 +69,7 @@ template<typename T> T vector<T>::operator[](int index) {
     }
 }
 template<typename T> void vector<T>::push_back(T value){
-    //todo load factor
-    if (array_container<T>::container_size_ > container::size_)
+    if (array_container<T>::container_size_*array_container<T>::load_factor_ > container::size_)
     {
         array_container<T>::tab_[container::size_] = value;
         container::size_ += 1;
@@ -78,11 +77,9 @@ template<typename T> void vector<T>::push_back(T value){
     }
     array_container<T>::tab_ = rewrite_append(value);
 }
-
 template<typename T> void vector<T>::push_front(T value){
     return insert(0,value);
 }
-
 template<typename T> void vector<T>::insert(int index,T value){
     if (index >= 0 && index < container::size_){
         int i = index;
@@ -103,33 +100,28 @@ template<typename T> void vector<T>::insert(int index,T value){
         throw std::out_of_range("Index out of range.");
     }
 }
-
 template<typename T> T vector<T>::pop(int index){
-    int ret = -1;
     if (index >= 0 && index < container::size_){
-        ret = array_container<T>::tab_[index];
+        auto ret = array_container<T>::tab_[index];
         int i = index;
         while(i<container::size_-1){
             array_container<T>::tab_[i] = array_container<T>::tab_[i+1];
             i+=1;
         }
         container::size_--;
+        return ret;
     }
     else
     {
         throw std::out_of_range("Index out of range.");
     }
-    return ret;
 }
-
 template<typename T> T vector<T>::pop_back(){
     return pop(container::size_-1);
 }
-
 template<typename T> T vector<T>::pop_front(){
     return pop(0);
 }
-
 template<typename T> bool vector<T>::clear(){
     delete [] array_container<T>::tab_;
     array_container<T>::tab_ = new T[array_container<T>::initial_size_];

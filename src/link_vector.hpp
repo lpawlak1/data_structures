@@ -158,9 +158,9 @@ template<typename T> T link_vector<T>::pop(int index)
     {
         return pop_back();
     }
-    else if (index < 0 || index > last_index())
+    else if (index < 0 || index >= last_index())
     {
-        return -20;
+        throw std::out_of_range("Index out of range.");
     }
     node<T>* curr = find_node(index);
     T ret = curr->value;
