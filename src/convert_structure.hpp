@@ -28,12 +28,45 @@ namespace convert_structure{
     template<typename T>
     vector<T>* convert_to_vector(stack<T>* stac)
     {
+        auto sizee = stac->size();
         auto* vec = new vector<T>(stac->size());
-        for(auto i=0;i<stac->size();i++)
+        for(auto i=0;i<sizee;i++)
         {
             vec->push_front(stac->pop());
         }
         return vec;
+    }
+    template<typename T>
+    link_vector<T>* convert_to_link_vector(vector<T>* vec)
+    {
+        link_vector<T>* link = new link_vector<T>();
+        for(auto i =0;i<vec->size();i++)
+        {
+            link->push_back((*vec)[i]);
+        }
+        return link;
+    }
+    template<typename T>
+    link_vector<T>* convert_to_link_vector(queue<T>* que)
+    {
+        link_vector<T>* link = new link_vector<T>();
+        auto sizee = que->size();
+        for(auto i =0;i<sizee;i++)
+        {
+            link->push_back(que->dequeue());
+        }
+        return link;
+    }
+    template<typename T>
+    link_vector<T>* convert_to_link_vector(stack<T>* stac)
+    {
+        auto* link = new link_vector<T>();
+        auto sizee = stac->size();
+        for(auto i =0;i<sizee;i++)
+        {
+            link->push_front(stac->pop());
+        }
+        return link;
     }
 }
 
