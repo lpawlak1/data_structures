@@ -1,15 +1,18 @@
 //container.h
 #ifndef ARRAY_CONTAINER_HPP
 #define ARRAY_CONTAINER_HPP
+
 #include "container.h"
 
-template<typename T> class array_container : public container{
+#define DEF_LOAD_FACTOR 0.5
+#define DEF_INIT_SIZE 5
+
+template<typename T> class array_container : public container{ //
 protected:
     array_container();
     array_container(int initial_size);
     array_container(int initial_size,float load_factor);
     array_container(float load_factor);
-    ~array_container(){delete tab_;};
 //methods
     virtual T* rewrite_append(T value) = 0;
     virtual T* rewrite(int size, int first_index) = 0;
@@ -20,9 +23,9 @@ protected:
     float load_factor_;
 };
 
-template<typename T> array_container<T>::array_container() : array_container<T>::array_container(5,0.5){}
-template<typename T> array_container<T>::array_container(int initial_size) : array_container<T>::array_container(initial_size,0.5){}
-template<typename T> array_container<T>::array_container(float load_factor): array_container<T>::array_container(5,load_factor){}
+template<typename T> array_container<T>::array_container() : array_container<T>::array_container(DEF_INIT_SIZE,DEF_LOAD_FACTOR){}
+template<typename T> array_container<T>::array_container(int initial_size) : array_container<T>::array_container(initial_size,DEF_LOAD_FACTOR){}
+template<typename T> array_container<T>::array_container(float load_factor): array_container<T>::array_container(DEF_INIT_SIZE,load_factor){}
 template<typename T> array_container<T>::array_container(int initial_size,float load_factor) {
     tab_ = new T[initial_size];
     this -> initial_size_ = initial_size;
