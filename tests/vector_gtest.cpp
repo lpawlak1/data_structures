@@ -31,6 +31,9 @@ TEST(vector_test, pop_get_test){
     EXPECT_EQ(97,vector_->size());
     EXPECT_THROW((*vector_)[-1],std::out_of_range);
     EXPECT_THROW((*vector_)[10000],std::out_of_range);
+    vector_->replace(0,123);
+    EXPECT_EQ(123,(*vector_)[0]);
+    EXPECT_THROW(vector_->replace(10000,123),std::invalid_argument);
     while(!(*vector_).empty())
     {
         vector_->pop_front();

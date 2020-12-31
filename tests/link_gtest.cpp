@@ -34,6 +34,9 @@ TEST(link_vector_test, pop_get_test){
     EXPECT_EQ(97,linkVector->size());
     EXPECT_THROW((*linkVector)[-1],std::out_of_range);
     EXPECT_THROW((*linkVector)[10000],std::out_of_range);
+    linkVector->replace(0,123);
+    EXPECT_EQ(123,(*linkVector)[0]);
+    EXPECT_THROW(linkVector->replace(10000,123),std::invalid_argument);
     while(!(*linkVector).empty())
     {
         linkVector->pop_front();
