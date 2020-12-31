@@ -6,23 +6,13 @@
 
 template<typename T> class stack : public container{
 public:
-    ~stack();
-    stack();
     bool push(T value);
     T pop();
     T peek();
     bool clear() override;
 private:
-    node<T>* last_;
+    node<T>* last_ = nullptr;
 };
-template<typename T> stack<T>::stack(){
-    size_ = 0;
-    last_=nullptr;
-}
-template<typename T> stack<T>::~stack(){
-    this->clear();
-    delete last_;
-}
 template<typename T> T stack<T>::pop(){
     if (empty())
     {

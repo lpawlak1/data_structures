@@ -9,8 +9,6 @@
 template<typename T> class link_vector : public list<T>, public container
 {
 public:
-    link_vector();
-    ~link_vector();
 //container
     bool clear() override;
 //list
@@ -34,7 +32,8 @@ private:
 };
 
 //container
-template<typename T> bool link_vector<T>::clear()
+template<typename T>
+bool link_vector<T>::clear()
 {
     if(size_ == 0){
         return true;
@@ -52,7 +51,8 @@ template<typename T> bool link_vector<T>::clear()
     return true;
 }
 //list
-template<typename T> void link_vector<T>::insert(int index, T value)
+template<typename T>
+void link_vector<T>::insert(int index, T value)
 {
     if (index == 0)
     {
@@ -76,7 +76,8 @@ template<typename T> void link_vector<T>::insert(int index, T value)
         size_++;
     }
 }
-template<typename T> T link_vector<T>::operator[](int index)
+template<typename T>
+T link_vector<T>::operator[](int index)
 {
     if(index < 0 || index >= size_)
     {
@@ -84,7 +85,8 @@ template<typename T> T link_vector<T>::operator[](int index)
     }
     return find_node(index)->value;
 }
-template<typename T> void link_vector<T>::push_front(T value)
+template<typename T>
+void link_vector<T>::push_front(T value)
 {
     if (size_ == 0)
     {
@@ -98,7 +100,8 @@ template<typename T> void link_vector<T>::push_front(T value)
     first_ = new_node;
     size_++;
 }
-template<typename T> void link_vector<T>::push_back(T value)
+template<typename T>
+void link_vector<T>::push_back(T value)
 {
     if (size_ == 0)
     {
@@ -113,7 +116,8 @@ template<typename T> void link_vector<T>::push_back(T value)
     last_ = new_node;
     size_++;
 }
-template<typename T> T link_vector<T>::pop_front(){
+template<typename T>
+T link_vector<T>::pop_front(){
     if (empty())
     {
         throw std::length_error("Link vector is empty.");
@@ -130,7 +134,8 @@ template<typename T> T link_vector<T>::pop_front(){
     size_--;
     return ret;
 }
-template<typename T> T link_vector<T>::pop_back()
+template<typename T>
+T link_vector<T>::pop_back()
 {
     if (empty())
     {
@@ -148,7 +153,8 @@ template<typename T> T link_vector<T>::pop_back()
     size_--;
     return ret;
 }
-template<typename T> T link_vector<T>::pop(int index)
+template<typename T>
+T link_vector<T>::pop(int index)
 {
     if (index == 0)
     {
@@ -171,26 +177,18 @@ template<typename T> T link_vector<T>::pop(int index)
     return ret;
 }
 //own
-template<typename T> link_vector<T>::link_vector(){
-    size_ =0;
-}
-template<typename T> link_vector<T>::~link_vector(){
-    while (size_ >0){
-        node<T>* curr = last_;
-        last_ = curr->previous;
-        delete curr;
-        size_--;
-    }
-}
-template<typename T> bool link_vector<T>::has_next(node<T>* curr)
+template<typename T>
+bool link_vector<T>::has_next(node<T>* curr)
 {
     return curr->next != nullptr;
 }
-template<typename T> bool link_vector<T>::has_previous(node<T>* curr)
+template<typename T>
+bool link_vector<T>::has_previous(node<T>* curr)
 {
     return curr->previous != nullptr;
 }
-template<typename T> void link_vector<T>::put_first(T value)
+template<typename T>
+void link_vector<T>::put_first(T value)
 {
     if (size_ != 0)
     {
@@ -202,7 +200,8 @@ template<typename T> void link_vector<T>::put_first(T value)
     last_ = curr;
     size_++;
 }
-template<typename T> node<T>* link_vector<T>::find_node(int index)
+template<typename T>
+node<T>* link_vector<T>::find_node(int index)
 {
     node<T>* curr = nullptr;
     if (index*2 >= size_)
@@ -227,7 +226,8 @@ template<typename T> node<T>* link_vector<T>::find_node(int index)
     }
     return curr;
 }
-template<typename T> T link_vector<T>::pop_last()
+template<typename T>
+T link_vector<T>::pop_last()
 {
     T ret = first_->value;
     delete first_;

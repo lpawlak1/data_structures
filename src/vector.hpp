@@ -13,8 +13,6 @@ public:
     vector(int initial_size);
     vector(int initial_size,float load_factor);
     vector(float load_factor);
-    ~vector(){this -> clear();};
-
 //list
     void insert(int index, T value) override;
     void push_back(T value) override;
@@ -32,10 +30,10 @@ protected:
 };
 
 //* private
-template<typename T> T* vector<T>::rewrite_append(T a)
+template<typename T> T* vector<T>::rewrite_append(T value)
 {
     int* tab =  this -> rewrite(array_container<T>::container_size_*2,0);
-    tab[container::size_] = a;
+    tab[container::size_] = value;
     container::size_++;
     return tab;
 }
@@ -60,7 +58,8 @@ template<typename T> vector<T>::vector(int initial_size) : array_container<T>::a
 template<typename T> vector<T>::vector(int initial_size,float load_factor) : array_container<T>::array_container(initial_size,load_factor){}
 template<typename T> vector<T>::vector(float load_factor) : array_container<T>::array_container(load_factor){}
 
-template<typename T> T vector<T>::operator[](int index) {
+template<typename T>
+T vector<T>::operator[](int index) {
     if (index >=0 && index < container::size_){
         return array_container<T>::tab_[index];
     }
@@ -68,7 +67,8 @@ template<typename T> T vector<T>::operator[](int index) {
         throw std::out_of_range("Index out of range.");
     }
 }
-template<typename T> void vector<T>::push_back(T value){
+template<typename T>
+void vector<T>::push_back(T value){
     if (array_container<T>::container_size_*array_container<T>::load_factor_ > container::size_)
     {
         array_container<T>::tab_[container::size_] = value;
@@ -77,10 +77,12 @@ template<typename T> void vector<T>::push_back(T value){
     }
     array_container<T>::tab_ = rewrite_append(value);
 }
-template<typename T> void vector<T>::push_front(T value){
+template<typename T>
+void vector<T>::push_front(T value){
     return insert(0,value);
 }
-template<typename T> void vector<T>::insert(int index,T value){
+template<typename T>
+void vector<T>::insert(int index,T value){
     if (index >= 0 && index < container::size_){
         int i = index;
         int temp = value;
@@ -100,7 +102,8 @@ template<typename T> void vector<T>::insert(int index,T value){
         throw std::out_of_range("Index out of range.");
     }
 }
-template<typename T> T vector<T>::pop(int index){
+template<typename T>
+T vector<T>::pop(int index){
     if (index >= 0 && index < container::size_){
         auto ret = array_container<T>::tab_[index];
         int i = index;
@@ -116,13 +119,16 @@ template<typename T> T vector<T>::pop(int index){
         throw std::out_of_range("Index out of range.");
     }
 }
-template<typename T> T vector<T>::pop_back(){
+template<typename T>
+T vector<T>::pop_back(){
     return pop(container::size_-1);
 }
-template<typename T> T vector<T>::pop_front(){
+template<typename T>
+T vector<T>::pop_front(){
     return pop(0);
 }
-template<typename T> bool vector<T>::clear(){
+template<typename T>
+bool vector<T>::clear(){
     delete [] array_container<T>::tab_;
     array_container<T>::tab_ = new T[array_container<T>::initial_size_];
     container::size_ = 0;

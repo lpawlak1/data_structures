@@ -11,9 +11,11 @@ public:
     virtual T pop_back() = 0;
     virtual T pop(int index) = 0;
     virtual T operator[](int index) = 0;
+    virtual void replace(int index, T value) = 0;
 protected:
-    list(){};
-    ~list(){};
+    //Used to make constructor and destructor protected
+    list()= default;;
+    ~list()= default;;
 };
 
 #endif
