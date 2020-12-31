@@ -19,6 +19,7 @@ public:
     T pop_back() override;
     T pop(int index) override;
     T operator[](int index) override;
+    void replace(int index, T value) override;
 protected:
     node<T>* first_ = nullptr;
     node<T>* last_ = nullptr;
@@ -235,6 +236,18 @@ T link_vector<T>::pop_last()
     last_ = nullptr;
     size_ = 0 ;
     return ret;
+}
+
+template<typename T>
+void link_vector<T>::replace(int index, T value) {
+    //if index is invalid throw out_of_range
+    if (index > size_ || index < 0)
+    {
+        throw std::invalid_argument("Index out of range.");
+    }
+    //if index is in range use find_node and change node from output
+    node<T>* nod = find_node(index);
+    nod->value = value;
 }
 
 #endif

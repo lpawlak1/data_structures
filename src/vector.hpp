@@ -21,6 +21,7 @@ public:
     T pop_back() override;
     T pop(int index) override;
     T operator[](int index) override;
+    void replace(int index, T value) override;
 //container
     bool clear() override;
 protected:
@@ -133,6 +134,17 @@ bool vector<T>::clear(){
     array_container<T>::tab_ = new T[array_container<T>::initial_size_];
     container::size_ = 0;
     return true;
+}
+
+template<typename T>
+void vector<T>::replace(int index, T value) {
+    //if index is invalid throw out_of_range
+    if (index > container::size_ || index < 0)
+    {
+        throw std::invalid_argument("Index out of range.");
+    }
+    //if index is in range change value in tab_ from array_container
+    array_container<T>::tab_[index] = value;
 }
 
 #endif
