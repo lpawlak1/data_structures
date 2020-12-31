@@ -12,8 +12,8 @@ class container{
 };
 template<typename T> struct node{
     T value;
-    struct node* next = nullptr;
-    struct node* previous = nullptr;
+    node* next = nullptr;
+    node* previous = nullptr;
 };
 
 #endif

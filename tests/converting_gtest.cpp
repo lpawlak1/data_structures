@@ -2,10 +2,6 @@
 // Created by lukas on 21.12.2020.
 //
 
-//TODO link to vector done +
-//todo vector to link 
-//todo queue to stack
-//todo stack to queue
 #include "gtest/gtest.h"
 #include "converting_gtest.h"
 #include "convert_structure.hpp"
