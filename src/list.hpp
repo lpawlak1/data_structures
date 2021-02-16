@@ -1,6 +1,8 @@
 #ifndef LIST_HPP
 #define LIST_HPP
 
+///Interface for on-list operation with pure virtual methods
+/// and protected constructor and destructor
 template<typename T> class list
 {
 public:

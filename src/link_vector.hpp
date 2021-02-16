@@ -12,14 +12,21 @@ template<typename T> class link_vector : public list<T>, public container
 public:
 //container
     bool clear() override;
-//list
+/// \see list
     void insert(int index,T value) override;
+/// \see list
     void push_front(T value) override;
+/// \see list
     void push_back(T value) override;
+/// \see list
     T pop_front() override;
+/// \see list
     T pop_back() override;
+/// \see list
     T pop(int index) override;
+/// \see list
     T operator[](int index) override;
+/// \see list
     void replace(int index, T value) override;
 protected:
     /// Means first node

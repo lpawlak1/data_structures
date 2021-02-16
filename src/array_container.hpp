@@ -4,12 +4,12 @@
 
 #include "container.h"
 
-//default load factor when array size is doubled
+///default load factor when array size is doubled
 #define DEF_LOAD_FACTOR 0.5
-//default initial size for array
+///default initial size for array
 #define DEF_INIT_SIZE 6
 
-//interface for structures which uses arrays
+///interface for structures which uses arrays as base
 template<typename T> class array_container : public container{
 
 public:
@@ -36,16 +36,16 @@ protected:
     T* rewrite(int size, int first_index);
 
 
-//actual array containing data
+///actual array containing data
     T* tab_ = nullptr;
 
-//current array size
+///current array size
     int container_size_;
 
-//initial size for array, used for clear method ,from container, as its the initial size after clearing
+///initial size for array, used for clear method ,from container, as its the initial size after clearing
     int initial_size_;
 
-//load factor when array size is doubled
+///load factor when array size is doubled
     float load_factor_;
 };
 

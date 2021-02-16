@@ -5,6 +5,7 @@
 #include "array_container.hpp"
 #include "stdexcept"
 
+///Resizeable array
 template<typename T> class vector : public list<T>, public array_container<T>{
 public:
 //own

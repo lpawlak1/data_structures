@@ -5,7 +5,7 @@
 #include "stdexcept"
 
 //Todo convert queue to one-way linked list
-/// basic LIFO structure
+/// Basic LIFO structure
 template<typename T> class queue : public container{
 public:
     /// Puts element on the back of the queue
