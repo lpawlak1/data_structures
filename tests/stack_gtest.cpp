@@ -16,13 +16,13 @@ stack<int> prepare_stack(){
     return stack;
 }
 TEST(stack_test, push_test){
-    stack<int> stack;
+    stack<int>* stack_ = new stack<int>();
     auto size = 1000;
     for(auto i = 0;i<size;i++){
-        stack.push(i);
+        stack_->push(i);
     }
-    EXPECT_EQ(size,stack.size());
-    stack.clear();
+    EXPECT_EQ(size,stack_->size());
+    delete stack_;
 }
 TEST(stack_test, peek_pop_test){
     stack<int> stack_ = prepare_stack();

@@ -1,0 +1,108 @@
+@startuml
+interface list{
++{abstract}insert(int index, T value): void
++{abstract}push_front(T value): void
++{abstract}push_back(T value): void
++{abstract}pop_front(): T
++{abstract}pop_back(): T
++{abstract}pop(int index): T
++{abstract}operator[](int index): T
++{abstract}replace(int index, T value): void
+}
+
+interface container{
+#size_: int
++{abstract}clear(): bool
++size(): int
++empty(): bool
+}
+
+entity node{
++value: T
++next: node*
++previous: node*
+}
+
+interface array_container{
++{static} DEF_LOAD_FACTOR: float
++{static} DEF_INITIAL_SIZE: int
+#tab_ : T*
+#container_size_: int
+#initial_size_: int
+#load_factor_: float
+--
+#rewrite_append(T value): T*
+#rewrite(int size, int first_index): T*
+--^ container ^--
++clear(): bool
+}
+
+class stack{
+-last_: node<T>*
+--
++push(T value): bool
++pop(): T
++peek(): T
+--^ container ^--
++clear(): bool
+}
+
+class queue{
+-first_: node<T>*
+-last_: node<T>*
+----
++enqueue(T value): bool
++dequeue(): T
++peek(): T
+--^ container ^--
++clear(): bool
+}
+
+class link_vector{
+#first_: node<T>*
+#last_: node<T>*
+--
+-has_next(node<T>* curr): bool
+-has_previous(node<T>* curr): bool
+-last_index(): int
+-put_first(T value): void
+-pop_last(): T
+-find_node(int index): node<T>*
+--^ container ^--
++clear(): bool
+--^ list ^--
++insert(int index,T value): void
++push_front(T value): void
++push_back(T value): void
++pop_front(): T
++pop_back(): T
++pop(int index): T
++operator[](int index): T
++replace(int index, T value): void
+}
+
+class vector{
+--^ container ^--
++clear(): bool
+--^ list ^--
++insert(int index,T value): void
++push_front(T value): void
++push_back(T value): void
++pop_front(): T
++pop_back(): T
++pop(int index): T
++operator[](int index): T
++replace(int index, T value): void
+}
+
+list <|-- link_vector
+container <|- array_container
+container <|-- stack
+container <|-- queue
+container <|-- link_vector
+array_container <|-- vector
+list <|-- vector
+node }|-- link_vector
+node }|-- queue
+node }|-- stack
+@enduml

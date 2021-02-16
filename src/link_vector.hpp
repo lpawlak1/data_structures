@@ -6,6 +6,7 @@
 #include "vector.hpp"
 #include "stdexcept"
 
+/// A class that forms a 2-way linked list
 template<typename T> class link_vector : public list<T>, public container
 {
 public:
@@ -21,14 +22,31 @@ public:
     T operator[](int index) override;
     void replace(int index, T value) override;
 protected:
+    /// Means first node
     node<T>* first_ = nullptr;
+    /// Means last node
     node<T>* last_ = nullptr;
 private:
+    /// Method for returning whether node has next in linked list
+    /// \param curr of type node<T>*
+    /// \return bool
     bool has_next(node<T>* curr);
+    /// Method for returning whether node has previous in linked list
+    /// \param curr of type node<T>*
+    /// \return bool
     bool has_previous(node<T>* curr);
+    /// Method for last index of linked_list
+    /// \return integer of last index in link_vector
     int last_index(){return size_-1;};
+    /// Insert when linked list is empty
+    /// \param value of type T of what to be inserted
     void put_first(T value);
+    /// Pop element that is last in linked list, meaning after this there will be no elements in list
+    /// \return value of type T
     T pop_last();
+    /// Go to certain index and get node that is at this index
+    /// \param index int
+    /// \return Pointer of type node<T> from index
     node<T>* find_node(int index);
 };
 

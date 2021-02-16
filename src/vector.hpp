@@ -3,16 +3,16 @@
 
 #include "list.hpp"
 #include "array_container.hpp"
-#include "link_vector.hpp"
 #include "stdexcept"
 
 template<typename T> class vector : public list<T>, public array_container<T>{
 public:
 //own
+    /// Default constructor
     vector();
+    /// Constructor with possibility
+    /// \param initial_size for container
     vector(int initial_size);
-    vector(int initial_size,float load_factor);
-    vector(float load_factor);
 //list
     void insert(int index, T value) override;
     void push_back(T value) override;
@@ -22,42 +22,13 @@ public:
     T pop(int index) override;
     T operator[](int index) override;
     void replace(int index, T value) override;
-//container
-    bool clear() override;
-protected:
-//array_container
-    T* rewrite_append(T value) override;
-    T* rewrite(int size, int first_index) override;
 };
 
-//* private
-template<typename T> T* vector<T>::rewrite_append(T value)
-{
-    int* tab =  this -> rewrite(array_container<T>::container_size_*2,0);
-    tab[container::size_] = value;
-    container::size_++;
-    return tab;
-}
-
-template<typename T> T* vector<T>::rewrite(int new_size, int first_index){
-    int* ret = new int[new_size];
-    int j = 0;
-    for (int i = first_index;i < new_size && i < container::size_;i++){
-        ret[j] = array_container<T>::tab_[i];
-        j+=1;
-    }
-    array_container<T>::container_size_ = new_size;
-    container::size_ = j;
-    delete [] array_container<T>::tab_;
-    return ret;
-}
 
 //* public
 template<typename T> vector<T>::vector() : array_container<T>::array_container(){
 }
 template<typename T> vector<T>::vector(int initial_size) : array_container<T>::array_container(initial_size){}
-template<typename T> vector<T>::vector(int initial_size,float load_factor) : array_container<T>::array_container(initial_size,load_factor){}
-template<typename T> vector<T>::vector(float load_factor) : array_container<T>::array_container(load_factor){}
 
 template<typename T>
 T vector<T>::operator[](int index) {
@@ -70,13 +41,13 @@ T vector<T>::operator[](int index) {
 }
 template<typename T>
 void vector<T>::push_back(T value){
-    if (array_container<T>::container_size_*array_container<T>::load_factor_ > container::size_)
+    if (array_container<T>::container_size_ > container::size_)
     {
         array_container<T>::tab_[container::size_] = value;
         container::size_ += 1;
         return;
     }
-    array_container<T>::tab_ = rewrite_append(value);
+    array_container<T>::tab_ = array_container<T>::rewrite_append(value);
 }
 template<typename T>
 void vector<T>::push_front(T value){
@@ -96,8 +67,8 @@ void vector<T>::insert(int index,T value){
         }
         push_back(temp);
     }
-    else if (index == 0 && container::size_ == 0){
-        push_back(value);
+    else if (index == container::size_){
+	    push_back(value);
     }
     else{
         throw std::out_of_range("Index out of range.");
@@ -113,6 +84,9 @@ T vector<T>::pop(int index){
             i+=1;
         }
         container::size_--;
+        if (array_container<T>::size_ / container::size_ < 0.25){
+            rewrite(array_container<T>::size_/0.25,0);
+        }
         return ret;
     }
     else
@@ -128,14 +102,6 @@ template<typename T>
 T vector<T>::pop_front(){
     return pop(0);
 }
-template<typename T>
-bool vector<T>::clear(){
-    delete [] array_container<T>::tab_;
-    array_container<T>::tab_ = new T[array_container<T>::initial_size_];
-    container::size_ = 0;
-    return true;
-}
-
 template<typename T>
 void vector<T>::replace(int index, T value) {
     //if index is invalid throw out_of_range
