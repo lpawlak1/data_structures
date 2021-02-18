@@ -15,10 +15,6 @@ public:
     /// Removes value at the end of list
     /// \return T value
     virtual T pop_back() = 0;
-    /// Removes value from retain index of the list
-    /// \param index integer from which spot value will be picked
-    /// \return T value
-    virtual T pop(int index) = 0;
     /// Picks value from desired index
     /// \param index
     /// \return T value

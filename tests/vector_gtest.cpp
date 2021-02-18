@@ -16,8 +16,8 @@ vector<int>* prepare_vector(){
 TEST(vector_test, push_test){
     vector<int> vector_;
     for(auto i = 0; i < 100; i+=1){
-        vector_.push_back(i);
         vector_.push_front(i);
+        vector_.push_back(i);
     }
     EXPECT_EQ(200,vector_.size());
 }

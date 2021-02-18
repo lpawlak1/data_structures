@@ -6,6 +6,7 @@
 
 //Todo convert stack to one-way linked list
 /// Basic FIFO structure
+///Uses linked nodes
 template<typename T> class stack : public container{
 public:
     /// Pushes value on top of the stack
@@ -18,7 +19,9 @@ public:
     /// Peeks the top value from the stack
     /// \return T value of the top value
     T peek();
-//container
+    ///Destructor for removing all nodes from memory
+    ~stack();
+    /// \see container
     bool clear() override;
 private:
     /// contains top node of the stack
@@ -75,6 +78,11 @@ bool stack<T>::clear(){
         size_--;
     }
     return true;
+}
+
+template<typename T>
+stack<T>::~stack() {
+    this->clear();
 }
 
 #endif

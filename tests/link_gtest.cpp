@@ -6,7 +6,7 @@
 #include "link_vector.hpp"
 
 link_vector<int>* prepare_link(){
-    link_vector<int>* linkVector = new link_vector<int>();
+    auto* linkVector = new link_vector<int>();
     for(auto i = 0; i < 100; i+=1){
         linkVector->push_back(i);
     }
@@ -43,10 +43,12 @@ TEST(link_vector_test, pop_get_test){
     }
     EXPECT_THROW(linkVector->pop_front(),std::length_error);
     EXPECT_THROW(linkVector->pop_back(),std::length_error);
+    delete linkVector;
 }
 TEST(link_vector_test, clear_test){
     link_vector<int>* linkVector = prepare_link();
     linkVector->clear();
     EXPECT_TRUE(linkVector->empty());
     EXPECT_EQ(0,linkVector->size());
+    delete linkVector;
 }
