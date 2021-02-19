@@ -12,7 +12,6 @@ add_executable(tests_
         queue_gtest.cpp headers/queue_gtest.h
         vector_gtest.cpp headers/vector_gtest.h
         stack_gtest.cpp headers/stack_gtest.h
-        converting_gtest.cpp headers/converting_gtest.h
         bst_gtest.cpp headers/bst_gtest.h)
 
 
