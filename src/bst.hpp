@@ -7,7 +7,7 @@
 #include <exception>
 #include <iostream>
 
-///Tree leaf
+///Tree leaf that is used in binary tree such as bst
 template<typename T> struct leaf{
     /// Stores value of type T
     T value;
@@ -18,8 +18,8 @@ template<typename T> struct leaf{
 };
 
 
-///Binary Search Tree with sorted_list interface
-///It's using node like objects
+///Binary Search Tree with sorted_list interface. 
+///It's using node like objects.
 template<typename T> 
 class bst : public sorted_list<T>, public container {
 public:
@@ -35,6 +35,7 @@ public:
     T operator[](int index) override;
     /// \see sorted_list
     bool find(T value) override;
+    /// traverses over every element and delete it from memory
     /// \see container
     bool clear() override;
     /// prints tree

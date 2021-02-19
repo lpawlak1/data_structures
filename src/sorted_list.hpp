@@ -1,8 +1,10 @@
 #ifndef sorted_list_hpp
 #define sorted_list_hpp
-///Interface for on-list operation with pure virtual methods
-/// and protected constructor and destructor
-/// only reliable on sorted structures
+/// Only reliable on sorted structures. 
+/// Interface for on-list operation with pure virtual methods
+/// and protected constructor and destructor.
+
+
 template<typename T> class sorted_list
 {
 public:

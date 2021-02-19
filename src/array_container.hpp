@@ -9,7 +9,7 @@
 ///default initial size for array
 #define DEF_INIT_SIZE 6
 
-///interface for structures which uses arrays as base
+///Interface for structures which uses arrays as base.
 template<typename T> class array_container : public container{
 
 public:

@@ -2,21 +2,22 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`class `[`array_container`](#class-array_container) | interface for structures which uses arrays as base
-`class `[`bst`](#class-bst) | Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using node like objects
-`class `[`container`](#class-container) | Interface used in all structures.
-`class `[`link_vector`](#class-link_vector) | A class that forms a 2-way linked list.
+`class `[`array_container`](#class-array_container) | Interface for structures which uses arrays as base.
+`class `[`bst`](#class-bst) | Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
+`class `[`container`](#class-container) | Basic interface with basic info as size in it, used in all structures.
+`class `[`link_vector`](#class-link_vector) | A class that forms a 2-way linked list using [. ](#struct-node)
 `class `[`list`](#class-list) | Interface for on-list operation with pure virtual methods and protected constructor and destructor
-`class `[`queue`](#class-queue) | Basic LIFO structure.
-`class `[`sorted_list`](#class-sorted_list) | Interface for on-list operation with pure virtual methods and protected constructor and destructor only reliable on sorted structures
-`class `[`stack`](#class-stack) | Basic FIFO structure Uses linked nodes
+`class `[`queue`](#class-queue) | Basic LIFO structure that uses [queue_node](#structqueue__node)
+`class `[`sorted_list`](#class-sorted_list) | Only reliable on sorted structures. Interface for on-list operation with pure virtual methods and protected constructor and destructor.
+`class `[`stack`](#class-stack) | Basic FIFO structure Uses [stack_node](#structstack__node) (one way node)
 `class `[`vector`](#class-vector) | Resizeable array.
-`struct `[`leaf`](#struct-leaf) | Tree leaf.
-`struct `[`node`](#struct-node) | 2 way linked list stores value, next node ,previous node
+`struct `[`leaf`](#struct-leaf) | Tree leaf that is used in binary tree such as bst.
+`struct `[`node`](#struct-node) | It's 2 way linked list. Stores: value, next node, previous node
+`struct `[`queue_node`](#structqueue__node) | Used only in queue as a (one) element container.
+`struct `[`stack_node`](#structstack__node) | Used only in stack as a (one) element container.
 
 
 ![Structure](/data_structures.svg)
-
 
 # class `array_container` 
 
@@ -25,7 +26,7 @@ class array_container
   : public container
 ```  
 
-interface for structures which uses arrays as base
+Interface for structures which uses arrays as base.
 
 ## Summary
 
@@ -98,7 +99,7 @@ class bst
   : public container
 ```  
 
-Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using node like objects
+Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
 
 ## Summary
 
@@ -111,7 +112,7 @@ Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using n
 `public virtual T `[`pop_back`](#class-bst_1ab1b126095e4125647eb2ada18f585b72)`()` | **See also**: [sorted_list](#class-sorted_list)
 `public virtual T `[`operator[]`](#class-bst_1a4e926c9a2f5bef056b4d9da4e01ece21)`(int index)` | **See also**: [sorted_list](#class-sorted_list)
 `public virtual bool `[`find`](#class-bst_1a5ffd4b9d5cfc8586be60d6c71b811580)`(T value)` | **See also**: [sorted_list](#class-sorted_list)
-`public virtual bool `[`clear`](#class-bst_1a730830b3771a2dbcc915f2b016291553)`()` | **See also**: [container](#class-container)
+`public virtual bool `[`clear`](#class-bst_1a730830b3771a2dbcc915f2b016291553)`()` | traverses over every element and delete it from memory 
 `public void `[`print`](#class-bst_1a35a5db649b6567824788babc5fc017ac)`()` | prints tree
 
 ## Members
@@ -142,6 +143,7 @@ Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using n
 
 #### `public virtual bool `[`clear`](#class-bst_1a730830b3771a2dbcc915f2b016291553)`()` 
 
+traverses over every element and delete it from memory 
 **See also**: [container](#class-container)
 
 #### `public void `[`print`](#class-bst_1a35a5db649b6567824788babc5fc017ac)`()` 
@@ -150,7 +152,7 @@ prints tree
 
 # class `container` 
 
-Interface used in all structures.
+Basic interface with basic info as size in it, used in all structures.
 
 ## Summary
 
@@ -203,13 +205,13 @@ class link_vector
   : public container
 ```  
 
-A class that forms a 2-way linked list.
+A class that forms a 2-way linked list using [. ](#struct-node)
 
 ## Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public virtual bool `[`clear`](#class-link_vector_1a9dba75eef89e9d3d5b81cbbcd7dc86b0)`()` | Used to delete every element in container, is pure-virtual and implemented in child classes 
+`public virtual bool `[`clear`](#class-link_vector_1a9dba75eef89e9d3d5b81cbbcd7dc86b0)`()` | Deletes every node from memory in O(n) 
 `public virtual void `[`insert`](#class-link_vector_1af2cc42f1867164b83ed907249a51da82)`(int index,T value)` | **See also**: [list](#class-list)
 `public virtual void `[`push_front`](#class-link_vector_1ade05da51ab95b141c8acede6a656a24b)`(T value)` | **See also**: [list](#class-list)
 `public virtual void `[`push_back`](#class-link_vector_1a2da065fc74e74621bff5493135375caf)`(T value)` | **See also**: [list](#class-list)
@@ -218,7 +220,7 @@ A class that forms a 2-way linked list.
 `public virtual T `[`pop`](#class-link_vector_1a51715233f11754e251f0a65eab0d1a7f)`(int index)` | **See also**: [list](#class-list)
 `public virtual T `[`operator[]`](#class-link_vector_1a0fecc40c272e9492116fa42de468cc15)`(int index)` | **See also**: [list](#class-list)
 `public virtual void `[`replace`](#class-link_vector_1a947d1545edd1ff292a5d246c8537835c)`(int index,T value)` | **See also**: [list](#class-list)
-`public  `[`~link_vector`](#class-link_vector_1a63b6ad70685da8e7a4eac688853dd43f)`()` | Custom destructor for destroying nodes.
+`public  `[`~link_vector`](#class-link_vector_1a63b6ad70685da8e7a4eac688853dd43f)`()` | Custom destructor for destroying nodes It just starts [clear()](#class-link_vector_1a9dba75eef89e9d3d5b81cbbcd7dc86b0)
 `protected `[`node`](#struct-node)`< T > * `[`first_`](#class-link_vector_1afd852dc66101d1b8ebd7a88ce1884dd0) | Means first node.
 `protected `[`node`](#struct-node)`< T > * `[`last_`](#class-link_vector_1abe985b0f2083d61dbb1aa363a5adb315) | Means last node.
 
@@ -226,9 +228,8 @@ A class that forms a 2-way linked list.
 
 #### `public virtual bool `[`clear`](#class-link_vector_1a9dba75eef89e9d3d5b81cbbcd7dc86b0)`()` 
 
-Used to delete every element in container, is pure-virtual and implemented in child classes 
-#### Returns
-bool of success
+Deletes every node from memory in O(n) 
+**See also**: [container](#class-container)
 
 #### `public virtual void `[`insert`](#class-link_vector_1af2cc42f1867164b83ed907249a51da82)`(int index,T value)` 
 
@@ -264,7 +265,7 @@ bool of success
 
 #### `public  `[`~link_vector`](#class-link_vector_1a63b6ad70685da8e7a4eac688853dd43f)`()` 
 
-Custom destructor for destroying nodes.
+Custom destructor for destroying nodes It just starts [clear()](#class-link_vector_1a9dba75eef89e9d3d5b81cbbcd7dc86b0)
 
 #### `protected `[`node`](#struct-node)`< T > * `[`first_`](#class-link_vector_1afd852dc66101d1b8ebd7a88ce1884dd0) 
 
@@ -368,7 +369,7 @@ class queue
   : public container
 ```  
 
-Basic LIFO structure.
+Basic LIFO structure that uses [queue_node](#structqueue__node)
 
 ## Summary
 
@@ -377,9 +378,9 @@ Basic LIFO structure.
 `public bool `[`enqueue`](#class-queue_1ab3efbd708a3353d2d433eb9ab5fd81f9)`(T value)` | Puts element on the back of the queue 
 `public T `[`dequeue`](#class-queue_1ab9f67346069105686326aba9069b767e)`()` | Removes element from the front 
 `public T `[`peek`](#class-queue_1aaf8364062092adf3c12a0b362fd9ddff)`()` | Peeks at the first element and dont remove it from queue 
-`public virtual bool `[`clear`](#class-queue_1a5253239ea33d427a998def95db59a2fb)`()` | Used to delete every element in container, is pure-virtual and implemented in child classes 
-`protected `[`node`](#struct-node)`< T > * `[`first_`](#class-queue_1a36915ac956d20e00fbd6ea61b6f5d015) | First element in queue.
-`protected `[`node`](#struct-node)`< T > * `[`last_`](#class-queue_1a002a8e4465f4dadbe1c77b357e319d07) | Last element in queue.
+`public virtual bool `[`clear`](#class-queue_1a5253239ea33d427a998def95db59a2fb)`()` | Pops every element in queue , it's O(n) 
+`protected `[`queue_node`](#structqueue__node)`< T > * `[`first_`](#class-queue_1aebad697e2b1520f3420dc1d4c25673bf) | First element in queue.
+`protected `[`queue_node`](#structqueue__node)`< T > * `[`last_`](#class-queue_1a0b74fe3d185a060539174d718cb846f7) | Last element in queue.
 
 ## Members
 
@@ -406,21 +407,20 @@ T value
 
 #### `public virtual bool `[`clear`](#class-queue_1a5253239ea33d427a998def95db59a2fb)`()` 
 
-Used to delete every element in container, is pure-virtual and implemented in child classes 
-#### Returns
-bool of success
+Pops every element in queue , it's O(n) 
+**See also**: [container](#class-container)
 
-#### `protected `[`node`](#struct-node)`< T > * `[`first_`](#class-queue_1a36915ac956d20e00fbd6ea61b6f5d015) 
+#### `protected `[`queue_node`](#structqueue__node)`< T > * `[`first_`](#class-queue_1aebad697e2b1520f3420dc1d4c25673bf) 
 
 First element in queue.
 
-#### `protected `[`node`](#struct-node)`< T > * `[`last_`](#class-queue_1a002a8e4465f4dadbe1c77b357e319d07) 
+#### `protected `[`queue_node`](#structqueue__node)`< T > * `[`last_`](#class-queue_1a0b74fe3d185a060539174d718cb846f7) 
 
 Last element in queue.
 
 # class `sorted_list` 
 
-Interface for on-list operation with pure virtual methods and protected constructor and destructor only reliable on sorted structures
+Only reliable on sorted structures. Interface for on-list operation with pure virtual methods and protected constructor and destructor.
 
 ## Summary
 
@@ -487,7 +487,7 @@ class stack
   : public container
 ```  
 
-Basic FIFO structure Uses linked nodes
+Basic FIFO structure Uses [stack_node](#structstack__node) (one way node)
 
 ## Summary
 
@@ -497,7 +497,7 @@ Basic FIFO structure Uses linked nodes
 `public T `[`pop`](#class-stack_1a94052aea6bcba50cd07e92e7759ed89d)`()` | Pops the top value from the stack 
 `public T `[`peek`](#class-stack_1a2f6deb236bd64b5d6eb0239fa3644d38)`()` | Peeks the top value from the stack 
 `public  `[`~stack`](#class-stack_1ace7791b755d237a7c48db0114eec1df9)`()` | Destructor for removing all nodes from memory.
-`public virtual bool `[`clear`](#class-stack_1a6299e7dbaa8b6acda6d81afc8c429384)`()` | **See also**: [container](#class-container)
+`public virtual bool `[`clear`](#class-stack_1a6299e7dbaa8b6acda6d81afc8c429384)`()` | Pops every element in stack 
 
 ## Members
 
@@ -528,6 +528,7 @@ Destructor for removing all nodes from memory.
 
 #### `public virtual bool `[`clear`](#class-stack_1a6299e7dbaa8b6acda6d81afc8c429384)`()` 
 
+Pops every element in stack 
 **See also**: [container](#class-container)
 
 # class `vector` 
@@ -627,7 +628,7 @@ Replacing a value at certain index
 
 # struct `leaf` 
 
-Tree leaf.
+Tree leaf that is used in binary tree such as bst.
 
 ## Summary
 
@@ -653,7 +654,7 @@ Stores left leaf.
 
 # struct `node` 
 
-2 way linked list stores value, next node ,previous node
+It's 2 way linked list. Stores: value, next node, previous node
 
 ## Summary
 
@@ -676,5 +677,39 @@ Stores next node.
 #### `public `[`node`](#struct-node)` * `[`previous`](#struct-node_1a898762e2da82f323ae81ff60487ff42c) 
 
 Stores previous node.
+
+# struct `queue_node` 
+
+Used only in queue as a (one) element container.
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public T `[`value`](#structqueue__node_1a2133e6968d46c317c0f43d6bb6725d6c) | 
+`public `[`queue_node`](#structqueue__node)`< T > * `[`next`](#structqueue__node_1a475b43a8cb73f6719cafa19e9b3e01c7) | 
+
+## Members
+
+#### `public T `[`value`](#structqueue__node_1a2133e6968d46c317c0f43d6bb6725d6c) 
+
+#### `public `[`queue_node`](#structqueue__node)`< T > * `[`next`](#structqueue__node_1a475b43a8cb73f6719cafa19e9b3e01c7) 
+
+# struct `stack_node` 
+
+Used only in stack as a (one) element container.
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public T `[`value`](#structstack__node_1a016485691ca3dac112bf8dd86d3933e9) | 
+`public `[`stack_node`](#structstack__node)`< T > * `[`previous`](#structstack__node_1ae7b0dd7caf3f2cbade60dad0857cc349) | 
+
+## Members
+
+#### `public T `[`value`](#structstack__node_1a016485691ca3dac112bf8dd86d3933e9) 
+
+#### `public `[`stack_node`](#structstack__node)`< T > * `[`previous`](#structstack__node_1ae7b0dd7caf3f2cbade60dad0857cc349) 
 
 Generated by [Moxygen](https://sourcey.com/moxygen)
