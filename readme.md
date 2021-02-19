@@ -14,6 +14,9 @@
 `struct `[`leaf`](#struct-leaf) | Tree leaf.
 `struct `[`node`](#struct-node) | 2 way linked list stores value, next node ,previous node
 
+
+![Structure](/data_structures.svg)
+
 # class `array_container` 
 
 ```
