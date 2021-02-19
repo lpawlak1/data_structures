@@ -3,7 +3,7 @@
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `class `[`array_container`](#class-array_container) | interface for structures which uses arrays as base
-`class `[`bst`](#class-bst) | Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using Node-like objects
+`class `[`bst`](#class-bst) | Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using node like objects
 `class `[`container`](#class-container) | Interface used in all structures.
 `class `[`link_vector`](#class-link_vector) | A class that forms a 2-way linked list.
 `class `[`list`](#class-list) | Interface for on-list operation with pure virtual methods and protected constructor and destructor
@@ -94,7 +94,7 @@ class bst
   : public container
 ```  
 
-Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using Node-like objects
+Binary Search Tree with [sorted_list](#class-sorted_list) interface It's using node like objects
 
 ## Summary
 

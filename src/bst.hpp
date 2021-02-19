@@ -19,7 +19,7 @@ template<typename T> struct leaf{
 
 
 ///Binary Search Tree with sorted_list interface
-///It's using Node-like objects
+///It's using node like objects
 template<typename T> 
 class bst : public sorted_list<T>, public container {
 public:
@@ -55,7 +55,7 @@ private:
     ///Head of the tree
     leaf<T>* head = nullptr;
     /// Recursive function for inserting a value at its spot
-    /// \param curr currently proccessed leaf
+    /// \param curr currently processed leaf
     /// \param value
     void insert_rec(leaf<T>* curr,T value);
     /// Used to go on every element of the tree from left to right
