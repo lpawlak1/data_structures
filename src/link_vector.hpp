@@ -3,14 +3,27 @@
 
 #include "list.hpp"
 #include "container.h"
-#include "vector.hpp"
 #include "stdexcept"
 
-/// A class that forms a 2-way linked list
+///It's 2 way linked list.
+///Stores: value, next node, previous node
+template<typename T> struct node{
+    /// Stores value of type T
+    T value;
+    ///Stores next node
+    node* next = nullptr;
+    /// Stores previous node
+    node* previous = nullptr;
+};
+
+/// A class that forms a 2-way linked list using 
+/// \link node .
 template<typename T> class link_vector : public list<T>, public container
 {
 public:
 //container
+/// Deletes every node from memory in O(n)
+/// \see container
     bool clear() override;
 /// \see list
     void insert(int index,T value) override;
@@ -28,6 +41,9 @@ public:
     T operator[](int index) override;
 /// \see list
     void replace(int index, T value) override;
+    ///Custom destructor for destroying nodes
+    ///It just starts clear()
+    ~link_vector();
 protected:
     /// Means first node
     node<T>* first_ = nullptr;
@@ -273,6 +289,11 @@ void link_vector<T>::replace(int index, T value) {
     //if index is in range use find_node and change node from output
     node<T>* nod = find_node(index);
     nod->value = value;
+}
+
+template<typename T>
+link_vector<T>::~link_vector() {
+    this->clear();
 }
 
 #endif

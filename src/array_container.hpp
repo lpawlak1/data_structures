@@ -9,7 +9,7 @@
 ///default initial size for array
 #define DEF_INIT_SIZE 6
 
-///interface for structures which uses arrays as base
+///Interface for structures which uses arrays as base.
 template<typename T> class array_container : public container{
 
 public:
@@ -50,8 +50,6 @@ protected:
 };
 
 
-template<typename T> array_container<T>::array_container() : array_container<T>::array_container(DEF_INIT_SIZE,DEF_LOAD_FACTOR){}
-template<typename T> array_container<T>::array_container(int initial_size) : array_container<T>::array_container(initial_size,DEF_LOAD_FACTOR){}
 template<typename T>
 T* array_container<T>::rewrite_append(T value)
 {
@@ -71,7 +69,7 @@ T* array_container<T>::rewrite(int new_size, int first_index){
     }
     array_container<T>::container_size_ = new_size;
     container::size_ = j;
-    delete [] array_container<T>::tab_;
+    delete array_container<T>::tab_;
     return ret;
 }
 template<typename T>
@@ -80,6 +78,22 @@ bool array_container<T>::clear(){
     array_container<T>::tab_ = new T[array_container<T>::initial_size_];
     container::size_ = 0;
     return true;
+}
+
+template<typename T>
+array_container<T>::array_container() {
+    this->load_factor_ = DEF_LOAD_FACTOR;
+    this->initial_size_ = DEF_INIT_SIZE;
+    this->tab_ = new int[initial_size_];
+    this->container_size_ = initial_size_;
+}
+
+template<typename T>
+array_container<T>::array_container(int initial_size) {
+    this->load_factor_ = DEF_LOAD_FACTOR;
+    this->initial_size_ = initial_size;
+    this->tab_ = new int[initial_size_];
+    this->container_size_ = initial_size_;
 }
 
 #endif

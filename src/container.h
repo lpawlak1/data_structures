@@ -1,6 +1,6 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
-///Interface used in all structures
+///Basic interface with basic info as size in it, used in all structures.
 class container{
     public:
         /// Method to show how much data it holds
@@ -22,16 +22,6 @@ class container{
         ~container()= default;;
         /// stores how many elements are in container
         int size_ = 0;
-};
-///2 way linked list
-///stores value, next node ,previous node
-template<typename T> struct node{
-    /// Stores value of type T
-    T value;
-    ///Stores next node
-    node* next = nullptr;
-    /// Stores previous node
-    node* previous = nullptr;
 };
 
 #endif

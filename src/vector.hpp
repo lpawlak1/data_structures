@@ -85,8 +85,8 @@ T vector<T>::pop(int index){
             i+=1;
         }
         container::size_--;
-        if (array_container<T>::size_ / container::size_ < 0.25){
-            rewrite(array_container<T>::size_/0.25,0);
+        if (container::size_ != 0 && array_container<T>::container_size_ / container::size_ < 0.25){
+            this->rewrite(array_container<T>::container_size_/0.25,0);
         }
         return ret;
     }
