@@ -7,15 +7,14 @@
 `class `[`container`](#class-container) | Basic interface with basic info as size in it, used in all structures.
 `class `[`link_vector`](#class-link_vector) | A class that forms a 2-way linked list using [. ](#struct-node)
 `class `[`list`](#class-list) | Interface for on-list operation with pure virtual methods and protected constructor and destructor
-`class `[`queue`](#class-queue) | Basic LIFO structure that uses [queue_node](#structqueue__node)
+`class `[`queue`](#class-queue) | Basic LIFO structure that uses [queue_node](#struct-queue_node)
 `class `[`sorted_list`](#class-sorted_list) | Only reliable on sorted structures. Interface for on-list operation with pure virtual methods and protected constructor and destructor.
-`class `[`stack`](#class-stack) | Basic FIFO structure Uses [stack_node](#structstack__node) (one way node)
+`class `[`stack`](#class-stack) | Basic FIFO structure Uses [stack_node](#struct-stack_node) (one way node)
 `class `[`vector`](#class-vector) | Resizeable array.
 `struct `[`leaf`](#struct-leaf) | Tree leaf that is used in binary tree such as bst.
 `struct `[`node`](#struct-node) | It's 2 way linked list. Stores: value, next node, previous node
-`struct `[`queue_node`](#structqueue__node) | Used only in queue as a (one) element container.
-`struct `[`stack_node`](#structstack__node) | Used only in stack as a (one) element container.
-
+`struct `[`queue_node`](#struct-queue_node) | Used only in queue as a (one) element container.
+`struct `[`stack_node`](#struct-stack_node) | Used only in stack as a (one) element container.
 
 ![Structure](/data_structures.svg)
 
@@ -369,7 +368,7 @@ class queue
   : public container
 ```  
 
-Basic LIFO structure that uses [queue_node](#structqueue__node)
+Basic LIFO structure that uses [queue_node](#struct-queue_node)
 
 ## Summary
 
@@ -379,8 +378,8 @@ Basic LIFO structure that uses [queue_node](#structqueue__node)
 `public T `[`dequeue`](#class-queue_1ab9f67346069105686326aba9069b767e)`()` | Removes element from the front 
 `public T `[`peek`](#class-queue_1aaf8364062092adf3c12a0b362fd9ddff)`()` | Peeks at the first element and dont remove it from queue 
 `public virtual bool `[`clear`](#class-queue_1a5253239ea33d427a998def95db59a2fb)`()` | Pops every element in queue , it's O(n) 
-`protected `[`queue_node`](#structqueue__node)`< T > * `[`first_`](#class-queue_1aebad697e2b1520f3420dc1d4c25673bf) | First element in queue.
-`protected `[`queue_node`](#structqueue__node)`< T > * `[`last_`](#class-queue_1a0b74fe3d185a060539174d718cb846f7) | Last element in queue.
+`protected `[`queue_node`](#struct-queue_node)`< T > * `[`first_`](#class-queue_1aebad697e2b1520f3420dc1d4c25673bf) | First element in queue.
+`protected `[`queue_node`](#struct-queue_node)`< T > * `[`last_`](#class-queue_1a0b74fe3d185a060539174d718cb846f7) | Last element in queue.
 
 ## Members
 
@@ -410,11 +409,11 @@ T value
 Pops every element in queue , it's O(n) 
 **See also**: [container](#class-container)
 
-#### `protected `[`queue_node`](#structqueue__node)`< T > * `[`first_`](#class-queue_1aebad697e2b1520f3420dc1d4c25673bf) 
+#### `protected `[`queue_node`](#struct-queue_node)`< T > * `[`first_`](#class-queue_1aebad697e2b1520f3420dc1d4c25673bf) 
 
 First element in queue.
 
-#### `protected `[`queue_node`](#structqueue__node)`< T > * `[`last_`](#class-queue_1a0b74fe3d185a060539174d718cb846f7) 
+#### `protected `[`queue_node`](#struct-queue_node)`< T > * `[`last_`](#class-queue_1a0b74fe3d185a060539174d718cb846f7) 
 
 Last element in queue.
 
@@ -487,7 +486,7 @@ class stack
   : public container
 ```  
 
-Basic FIFO structure Uses [stack_node](#structstack__node) (one way node)
+Basic FIFO structure Uses [stack_node](#struct-stack_node) (one way node)
 
 ## Summary
 
@@ -686,14 +685,14 @@ Used only in queue as a (one) element container.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public T `[`value`](#structqueue__node_1a2133e6968d46c317c0f43d6bb6725d6c) | 
-`public `[`queue_node`](#structqueue__node)`< T > * `[`next`](#structqueue__node_1a475b43a8cb73f6719cafa19e9b3e01c7) | 
+`public T `[`value`](#struct-queue_node_1a2133e6968d46c317c0f43d6bb6725d6c) | 
+`public `[`queue_node`](#struct-queue_node)`< T > * `[`next`](#struct-queue_node_1a475b43a8cb73f6719cafa19e9b3e01c7) | 
 
 ## Members
 
-#### `public T `[`value`](#structqueue__node_1a2133e6968d46c317c0f43d6bb6725d6c) 
+#### `public T `[`value`](#struct-queue_node_1a2133e6968d46c317c0f43d6bb6725d6c) 
 
-#### `public `[`queue_node`](#structqueue__node)`< T > * `[`next`](#structqueue__node_1a475b43a8cb73f6719cafa19e9b3e01c7) 
+#### `public `[`queue_node`](#struct-queue_node)`< T > * `[`next`](#struct-queue_node_1a475b43a8cb73f6719cafa19e9b3e01c7) 
 
 # struct `stack_node` 
 
@@ -703,13 +702,13 @@ Used only in stack as a (one) element container.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public T `[`value`](#structstack__node_1a016485691ca3dac112bf8dd86d3933e9) | 
-`public `[`stack_node`](#structstack__node)`< T > * `[`previous`](#structstack__node_1ae7b0dd7caf3f2cbade60dad0857cc349) | 
+`public T `[`value`](#struct-stack_node_1a016485691ca3dac112bf8dd86d3933e9) | 
+`public `[`stack_node`](#struct-stack_node)`< T > * `[`previous`](#struct-stack_node_1ae7b0dd7caf3f2cbade60dad0857cc349) | 
 
 ## Members
 
-#### `public T `[`value`](#structstack__node_1a016485691ca3dac112bf8dd86d3933e9) 
+#### `public T `[`value`](#struct-stack_node_1a016485691ca3dac112bf8dd86d3933e9) 
 
-#### `public `[`stack_node`](#structstack__node)`< T > * `[`previous`](#structstack__node_1ae7b0dd7caf3f2cbade60dad0857cc349) 
+#### `public `[`stack_node`](#struct-stack_node)`< T > * `[`previous`](#struct-stack_node_1ae7b0dd7caf3f2cbade60dad0857cc349) 
 
 Generated by [Moxygen](https://sourcey.com/moxygen)
