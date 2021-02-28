@@ -1,0 +1,149 @@
+@startuml
+interface list{
++{abstract}insert(int index, T value): void
++{abstract}push_front(T value): void
++{abstract}push_back(T value): void
++{abstract}pop_front(): T
++{abstract}pop_back(): T
++{abstract}pop(int index): T
++{abstract}operator[](int index): T
++{abstract}replace(int index, T value): void
+}
+
+interface container{
+#size_: int
++{abstract}clear(): bool
++size(): int
++empty(): bool
+}
+
+entity node{
++value: T
++next: node*
++previous: node*
+}
+
+interface array_container{
++{static} DEF_LOAD_FACTOR: float
++{static} DEF_INITIAL_SIZE: int
+#tab_ : T*
+#container_size_: int
+#initial_size_: int
+#load_factor_: float
+--
+#rewrite_append(T value): T*
+#rewrite(int size, int first_index): T*
+--^ container ^--
++clear(): bool
+}
+
+class stack{
+-last_: stack_node<T>*
+--
++push(T value): bool
++pop(): T
++peek(): T
+--^ container ^--
++clear(): bool
+}
+
+class queue{
+-first_: queue_node<T>*
+-last_: queue_node<T>*
+----
++enqueue(T value): bool
++dequeue(): T
++peek(): T
+--^ container ^--
++clear(): bool
+}
+
+class link_vector{
+#first_: node<T>*
+#last_: node<T>*
+--
+-has_next(node<T>* curr): bool
+-has_previous(node<T>* curr): bool
+-last_index(): int
+-put_first(T value): void
+-pop_last(): T
+-find_node(int index): node<T>*
+--^ container ^--
++clear(): bool
+--^ list ^--
++insert(int index,T value): void
++push_front(T value): void
++push_back(T value): void
++pop_front(): T
++pop_back(): T
++pop(int index): T
++operator[](int index): T
++replace(int index, T value): void
+}
+
+class vector{
+--^ container ^--
++clear(): bool
+--^ list ^--
++insert(int index,T value): void
++push_front(T value): void
++push_back(T value): void
++pop_front(): T
++pop_back(): T
++pop(int index): T
++operator[](int index): T
++replace(int index, T value): void
+}
+class bst{
+#head: leaf<T>*
+--
+-find_parent(leaf<T>* prev, leaf<T>* curr, T value): leaf<T>*
+-find_leaf(leaf<T>* curr, T value): leaf<T>*
+-insert_rec(leaf<T>* curr,T value): void
+-traverse(leaf<T>* curr, int* curr_idx, int ideal_idx): leaf<T>*
+-print(leaf<T>* curr): void
+-clear_rec(leaf<T> *curr): bool
+--^ sorted_list ^--
++insert(T value): void
++pop_front(): T
++pop_back(): T
++operator[](int index): T
++find(T value): bool
+--^ container ^--
++clear(): bool
+}
+entity leaf{
++value: T
++right: leaf*
++left: leaf*
+}
+interface sorted_list{
++{abstract}insert(T value): void
++{abstract}pop_front(): T
++{abstract}pop_back(): T
++{abstract}operator[](int index): T
++{abstract}find(T value): bool
+}
+entity stack_node{
++value: T
++previous: stack_node*
+}
+entity queue_node{
++value: T
++next: queue_node*
+}
+
+list <|-- link_vector
+container <|- array_container
+container <|-- stack
+container <|-- queue
+container <|-- link_vector
+array_container <|-- vector
+list <|-- vector
+node }|-- link_vector
+queue_node }|-- queue
+stack_node }|-- stack
+leaf }|-- bst
+sorted_list <|-- bst
+container <|-- bst
+@enduml
