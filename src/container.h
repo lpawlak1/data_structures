@@ -1,5 +1,17 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
+
+
+namespace utils {
+    template<typename T>
+    T max(T a1, T a2){
+        return (a1 > a2) ? a1 : a2;
+    }
+    
+
+}
+
+
 ///Basic interface with basic info as size in it, used in all structures.
 class container{
     public:
