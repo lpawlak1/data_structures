@@ -12,7 +12,8 @@ add_executable(tests_
         queue_gtest.cpp headers/queue_gtest.h
         vector_gtest.cpp headers/vector_gtest.h
         stack_gtest.cpp headers/stack_gtest.h
-        bst_gtest.cpp headers/bst_gtest.h)
+        bst_gtest.cpp headers/bst_gtest.h
+        avl_gtest.cpp headers/avl_gtest.h)
 
 
 target_link_libraries(tests_ gtest gtest_main)
