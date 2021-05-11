@@ -7,14 +7,20 @@
 #include <exception>
 #include <iostream>
 
+
 ///Tree leaf that is used in binary tree such as bst
-template<typename T> struct leaf{
+template<typename T>
+class leaf {
+public:
+    virtual ~leaf() = default;
     /// Stores value of type T
     T value;
     /// Stores right leaf
     leaf* right = nullptr;
     /// Stores left leaf
     leaf* left = nullptr;
+    /// Stores parent leaf;
+    leaf* parent = nullptr;
 };
 
 
@@ -40,13 +46,7 @@ public:
     bool clear() override;
     /// prints tree
     void print();
-private:
-    /// Recursive func used to find parent leaf in tree, element has to be in tree
-    /// \param prev pointer to previous leaf (parent of curr)
-    /// \param curr pointer to current leaf
-    /// \param value of type T *self explanatory*
-    /// \return pointer to leaf parent that has value on left or right
-    leaf<T>* find_parent(leaf<T>* prev, leaf<T>* curr,T value);
+protected:
     /// Used to find leaf in tree or check if element is in tree
     /// It's recursive so curr has to be in 
     /// \param value of type T *self explanatory*
@@ -72,6 +72,7 @@ private:
     /// \return true if everything go as expected
     bool clear_rec(leaf<T> *curr);
 };
+
 template<typename T>
 bool bst<T>::clear(){
     if (container::size_ ==0){
@@ -81,6 +82,7 @@ bool bst<T>::clear(){
     container::size_ = 0;
     return ret;
 }
+
 template<typename T>
 bool bst<T>::clear_rec(leaf<T>* curr){
     if (curr == nullptr){
@@ -90,9 +92,12 @@ bool bst<T>::clear_rec(leaf<T>* curr){
     curr->left = nullptr;
     this->clear_rec(curr->right);
     curr->right = nullptr;
+
+    curr->parent = nullptr;
     delete curr;
     return true;
 }
+
 template<typename T>
 void bst<T>::insert(T value)
 {
@@ -110,28 +115,31 @@ void bst<T>::insert(T value)
 template<typename T>
 void bst<T>::insert_rec(leaf<T>* curr, T value)
 {
-
     if (value > curr->value){
         if (curr->right == nullptr){
             curr->right = new leaf<T>();
             curr->right->value = value;
+            curr->right->parent = curr;
         }
-        insert_rec(curr->right, value);
+        else insert_rec(curr->right, value);
     }
     else if (value < curr->value){
-        if (curr->left== nullptr){
+        if (curr->left == nullptr){
             curr->left = new leaf<T>();
             curr->left->value = value;
+            curr->left->parent = curr;
         }
-        insert_rec(curr->left, value);
+        else insert_rec(curr->left, value);
     }
 }
+
 template<typename T>
 T bst<T>::operator[](int index)
 {
-    int a = 0;
-    return (this->traverse(head,&a,index))->value;
+    int current_idx = 0;
+    return (this->traverse(head,&current_idx,index))->value;
 }
+
 template<typename T>
 T bst<T>::pop_front()
 {
@@ -145,8 +153,7 @@ T bst<T>::pop_front()
     }
     ret = cp2 -> value;
     if (cp == nullptr){
-        //means cp2 is head still
-        head = head -> right;
+        head = head -> right; // Means left most is root
     }
     else{
         cp -> left = cp2->right;
@@ -155,6 +162,7 @@ T bst<T>::pop_front()
     container::size_--;
     return ret;
 }
+
 template<typename T>
 T bst<T>::pop_back()
 {
@@ -168,7 +176,7 @@ T bst<T>::pop_back()
     }
     ret = cp2 -> value;
     if (cp == nullptr){
-        head = head->right;
+        head = head->left; // Means right most is root
     }
     else{
         cp -> right = cp2->left;
@@ -177,19 +185,21 @@ T bst<T>::pop_back()
     container::size_--;
     return ret;
 }
+
 template<typename T>
 bool bst<T>::find(T value)
 {
     return this->find_leaf(head,value) != nullptr;
 }
+
 template<typename T>
 leaf<T>* bst<T>::find_leaf(leaf<T>* curr,T value)
 {
-
     if (curr == nullptr)
     {
         return nullptr;
     }
+
     if(curr-> value > value){
         return this->find_leaf(curr->left,value);
     }
@@ -198,23 +208,6 @@ leaf<T>* bst<T>::find_leaf(leaf<T>* curr,T value)
     }
     else{
         return curr;
-    }
-}
-
-template<typename T>
-leaf<T>* bst<T>::find_parent(leaf<T>* prev, leaf<T>* curr,T value)
-{
-    if(curr == nullptr){
-        return nullptr;
-    }
-    if(curr -> value > value){
-        return find_parent(curr,curr->left,value);
-    }
-    else if (curr -> value < value){
-        return find_parent(curr,curr-> right,value);
-    }
-    else{
-        return prev;
     }
 }
 
@@ -238,12 +231,14 @@ leaf<T>* bst<T>::traverse(leaf<T>* curr, int* curr_idx, int ideal_idx)
     }
     return nullptr;
 }
+
 template<typename T>
 void bst<T>::print()
 {
     this->print(head);
     std::cout << std::endl;
 }
+
 template<typename T>
 void bst<T>::print(leaf<T>* curr){
     using namespace std;
