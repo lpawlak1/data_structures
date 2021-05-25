@@ -6,6 +6,32 @@
 #include "bst_gtest.h"
 #include "gtest/gtest.h"
 
+
+bool dfs_bs(leaf<int>* leaf){
+    if (leaf == nullptr){
+        return true;
+    }
+    bool retur = true;
+    if (leaf->left != nullptr){
+        if (leaf->left->parent != leaf) return false;
+        retur &= dfs_bs(leaf->left);
+    }
+    if (leaf->right != nullptr){
+        if (leaf->right->parent != leaf) return false;
+        retur &= dfs_bs(leaf->right);
+    }
+    return retur;
+}
+
+bool checkIntegrity_bs(bst<int>* tree){
+    auto* head = (leaf<int>*) tree->get_data();
+    bool ret = true;
+    ret &= dfs_bs(head->left);
+    ret &= dfs_bs(head->right);
+    ret &= (head->parent == nullptr);
+    return ret;
+}
+
 bst<int>* prepare_bst()
 {
     auto* tree = new bst<int>();
@@ -22,6 +48,7 @@ TEST(bst_test, bst_create){
     for(auto i = 0; i < 50; i++){
         tree->insert(i*2);
     }
+    EXPECT_EQ(true,checkIntegrity_bs(tree));
     tree->print();
     delete tree;
 }

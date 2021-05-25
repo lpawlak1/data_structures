@@ -46,6 +46,9 @@ public:
     bool clear() override;
     /// prints tree
     void print();
+
+
+    leaf<T>* get_data(){return this->head;};
 protected:
     /// Used to find leaf in tree or check if element is in tree
     /// It's recursive so curr has to be in 
@@ -199,12 +202,13 @@ leaf<T>* bst<T>::find_leaf(leaf<T>* curr,T value)
     {
         return nullptr;
     }
+    printf("%d\n",curr->value);
 
-    if(curr-> value > value){
+    if(value < curr->value){
         return this->find_leaf(curr->left,value);
     }
-    else if (curr -> value < value){
-        return this->find_leaf(curr-> right,value);
+    else if (value > curr->value){
+        return this->find_leaf(curr->right,value);
     }
     else{
         return curr;
@@ -245,9 +249,11 @@ void bst<T>::print(leaf<T>* curr){
     if(curr == nullptr){
         return;
     }
+    cout << "(";
     this->print(curr->left);
-    cout << curr->value << "--->";
+    cout << curr->value << "";
     this->print(curr->right);
+    cout << ")";
 }
 
 template<typename T>
