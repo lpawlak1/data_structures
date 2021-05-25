@@ -4,8 +4,6 @@
 
 #include "container.h"
 
-///default load factor when array size is doubled
-#define DEF_LOAD_FACTOR 0.5
 ///default initial size for array
 #define DEF_INIT_SIZE 6
 
@@ -22,7 +20,9 @@ protected:
     /// Used to make constructor protected
     array_container();
     /// Used to make destructor protected
-    array_container(int initial_size);
+    explicit array_container(int initial_size);
+
+    ~array_container();
 
 
 
@@ -40,13 +40,11 @@ protected:
     T* tab_ = nullptr;
 
 ///current array size
-    int container_size_;
+    int container_size_{};
 
 ///initial size for array, used for clear method ,from container, as its the initial size after clearing
-    int initial_size_;
+    int initial_size_{};
 
-///load factor when array size is doubled
-    float load_factor_;
 };
 
 
@@ -69,7 +67,7 @@ T* array_container<T>::rewrite(int new_size, int first_index){
     }
     array_container<T>::container_size_ = new_size;
     container::size_ = j;
-    delete array_container<T>::tab_;
+    delete[] array_container<T>::tab_;
     return ret;
 }
 template<typename T>
@@ -82,7 +80,6 @@ bool array_container<T>::clear(){
 
 template<typename T>
 array_container<T>::array_container() {
-    this->load_factor_ = DEF_LOAD_FACTOR;
     this->initial_size_ = DEF_INIT_SIZE;
     this->tab_ = new int[initial_size_];
     this->container_size_ = initial_size_;
@@ -90,10 +87,14 @@ array_container<T>::array_container() {
 
 template<typename T>
 array_container<T>::array_container(int initial_size) {
-    this->load_factor_ = DEF_LOAD_FACTOR;
     this->initial_size_ = initial_size;
     this->tab_ = new int[initial_size_];
     this->container_size_ = initial_size_;
+}
+
+template<typename T>
+array_container<T>::~array_container() {
+    delete[] tab_;
 }
 
 #endif
