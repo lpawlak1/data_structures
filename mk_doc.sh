@@ -9,9 +9,11 @@ sed -i 's/classqueue/class-queue/g' README.md
 sed -i 's/classsorted__list/class-sorted_list/g' README.md  
 sed -i 's/classstack/class-stack/g' README.md  
 sed -i 's/classvector/class-vector/g' README.md  
-sed -i 's/structleaf/struct-leaf/g' README.md  
+sed -i 's/classleaf/class-leaf/g' README.md  
 sed -i 's/structnode/struct-node/g' README.md  
 sed -i 's/structqueue__node/struct-queue_node/g' README.md  
-sed -i 's/structstack__node/struct-stack_node/g' README.md  
+sed -i 's/structstack__node/struct-stack_node/g' README.md
+sed -i 's/classavl__leaf/class-avl_leaf/g' README.md
+sed -i 's/classavl__tree/class-avl_tree/g' README.md
 rm -rf ./doxydoc
 

@@ -24,12 +24,10 @@ entity node{
 }
 
 interface array_container{
-+{static} DEF_LOAD_FACTOR: float
 +{static} DEF_INITIAL_SIZE: int
 #tab_ : T*
 #container_size_: int
 #initial_size_: int
-#load_factor_: float
 --
 #rewrite_append(T value): T*
 #rewrite(int size, int first_index): T*
@@ -97,7 +95,6 @@ class vector{
 class bst{
 #head: leaf<T>*
 --
--find_parent(leaf<T>* prev, leaf<T>* curr, T value): leaf<T>*
 -find_leaf(leaf<T>* curr, T value): leaf<T>*
 -insert_rec(leaf<T>* curr,T value): void
 -traverse(leaf<T>* curr, int* curr_idx, int ideal_idx): leaf<T>*
@@ -114,6 +111,7 @@ class bst{
 }
 entity leaf{
 +value: T
++parent: leaf*
 +right: leaf*
 +left: leaf*
 }
@@ -124,6 +122,40 @@ interface sorted_list{
 +{abstract}operator[](int index): T
 +{abstract}find(T value): bool
 }
+
+entity avl_leaf{
++value: T
++parent: leaf*
++right: leaf*
++left: leaf*
++height : int
+}
+class avl_tree{
+#head: avl_leaf<T>*
+--
+-rotate_right(avl_leaf<T>* sub_tree_high) : void
+-rotate_left(avl_leaf<T>* sub_tree_high) : void
+-find_succesor(avl_leaf<T>* leaf) : avl_leaf<T>*
+-remove_leaf(avl_leaf<T> *leaf) : void
+-rebalance_up(avl_leaf<T> *curr) : void
+-remove_head() : void
++get_data_avl() : avl_leaf<T>*
+--^ bst ^--
+-insert_rec(leaf<T>* curr,T value): void
+-find_leaf(leaf<T>* curr, T value): leaf<T>*
+-traverse(leaf<T>* curr, int* curr_idx, int ideal_idx): leaf<T>*
+-print(leaf<T>* curr): void
+-clear_rec(leaf<T> *curr): bool
+--^ sorted_list ^--
++insert(T value): void
++pop_front(): T
++pop_back(): T
++operator[](int index): T
++find(T value): bool
+--^ container ^--
++clear(): bool
+}
+
 entity stack_node{
 +value: T
 +previous: stack_node*
@@ -143,7 +175,15 @@ list <|-- vector
 node }|-- link_vector
 queue_node }|-- queue
 stack_node }|-- stack
+
 leaf }|-- bst
 sorted_list <|-- bst
 container <|-- bst
+
+bst <|-- avl_tree
+avl_leaf}|-- avl_tree
+sorted_list <|-- avl_tree
+container <|-- avl_tree
+
+leaf <-- avl_leaf
 @enduml

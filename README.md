@@ -3,20 +3,23 @@
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `class `[`array_container`](#class-array_container) | Interface for structures which uses arrays as base.
+`class `[`avl_leaf`](#class-avl_leaf) | Tree leaf that is used in avl tree In addition it has height
+`class `[`avl_tree`](#class-avl_tree) | Self Balancing Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
 `class `[`bst`](#class-bst) | Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
 `class `[`container`](#class-container) | Basic interface with basic info as size in it, used in all structures.
+`class `[`leaf`](#class-leaf) | Tree leaf that is used in binary tree such as bst.
 `class `[`link_vector`](#class-link_vector) | A class that forms a 2-way linked list using [. ](#struct-node)
 `class `[`list`](#class-list) | Interface for on-list operation with pure virtual methods and protected constructor and destructor
 `class `[`queue`](#class-queue) | Basic LIFO structure that uses [queue_node](#struct-queue_node)
 `class `[`sorted_list`](#class-sorted_list) | Only reliable on sorted structures. Interface for on-list operation with pure virtual methods and protected constructor and destructor.
 `class `[`stack`](#class-stack) | Basic FIFO structure Uses [stack_node](#struct-stack_node) (one way node)
 `class `[`vector`](#class-vector) | Resizeable array.
-`struct `[`leaf`](#struct-leaf) | Tree leaf that is used in binary tree such as bst.
 `struct `[`node`](#struct-node) | It's 2 way linked list. Stores: value, next node, previous node
 `struct `[`queue_node`](#struct-queue_node) | Used only in queue as a (one) element container.
 `struct `[`stack_node`](#struct-stack_node) | Used only in stack as a (one) element container.
+`namespace `[`utils`](#namespaceutils) | namespace with things that doesnt fit in class
 
-![Structure](/data_structures.svg)
+![Structure](./data_structures.svg)
 
 # class `array_container` 
 
@@ -35,9 +38,9 @@ Interface for structures which uses arrays as base.
 `protected T * `[`tab_`](#class-array_container_1afe25702e7418dada645592e35e5a2324) | actual array containing data
 `protected int `[`container_size_`](#class-array_container_1a13bdb43a7c0f2576bcfbaa27dfc99f39) | current array size
 `protected int `[`initial_size_`](#class-array_container_1ae8a27e124e6a2fa39c2e75b16f34a785) | initial size for array, used for clear method ,from container, as its the initial size after clearing
-`protected float `[`load_factor_`](#class-array_container_1a6c00bcc5746694d36795a6e8b283d91e) | load factor when array size is doubled
 `protected  `[`array_container`](#class-array_container_1aa666d057bac6792270fcd5fc11222f46)`()` | Used to make constructor protected.
-`protected  `[`array_container`](#class-array_container_1a68dcb17fa82b8bcc588a6f05e0ca58ae)`(int initial_size)` | Used to make destructor protected.
+`protected  explicit `[`array_container`](#class-array_container_1a68dcb17fa82b8bcc588a6f05e0ca58ae)`(int initial_size)` | Used to make destructor protected.
+`protected  `[`~array_container`](#class-array_container_1a418ac00506817b16bc6745971629c175)`()` | 
 `protected T * `[`rewrite_append`](#class-array_container_1a1e601637e7079de8e1e241d659f46784)`(T value)` | Method used for rewriting data to a new array and appending `value` at the end od array 
 `protected T * `[`rewrite`](#class-array_container_1a598cc0645e6460c79dd95221882cf0cd)`(int size,int first_index)` | Method used for rewriting into a new `size` starting from a `first_index`
 
@@ -61,17 +64,15 @@ current array size
 
 initial size for array, used for clear method ,from container, as its the initial size after clearing
 
-#### `protected float `[`load_factor_`](#class-array_container_1a6c00bcc5746694d36795a6e8b283d91e) 
-
-load factor when array size is doubled
-
 #### `protected  `[`array_container`](#class-array_container_1aa666d057bac6792270fcd5fc11222f46)`()` 
 
 Used to make constructor protected.
 
-#### `protected  `[`array_container`](#class-array_container_1a68dcb17fa82b8bcc588a6f05e0ca58ae)`(int initial_size)` 
+#### `protected  explicit `[`array_container`](#class-array_container_1a68dcb17fa82b8bcc588a6f05e0ca58ae)`(int initial_size)` 
 
 Used to make destructor protected.
+
+#### `protected  `[`~array_container`](#class-array_container_1a418ac00506817b16bc6745971629c175)`()` 
 
 #### `protected T * `[`rewrite_append`](#class-array_container_1a1e601637e7079de8e1e241d659f46784)`(T value)` 
 
@@ -89,6 +90,92 @@ Method used for rewriting into a new `size` starting from a `first_index`
 
 #### Returns
 A pointer to a new array
+
+# class `avl_leaf` 
+
+```
+class avl_leaf
+  : public leaf< T >
+```  
+
+Tree leaf that is used in avl tree In addition it has height
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public int `[`height`](#class-avl_leaf_1a81b1b3283a3457c9e51d9a4fbdcbf68c) | 
+
+## Members
+
+#### `public int `[`height`](#class-avl_leaf_1a81b1b3283a3457c9e51d9a4fbdcbf68c) 
+
+# class `avl_tree` 
+
+```
+class avl_tree
+  : public bst< T >
+```  
+
+Self Balancing Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public  `[`avl_tree`](#class-avl_tree_1ab89b9c8caa5f5d3f626816da593deae5)`() = default` | 
+`public  `[`~avl_tree`](#class-avl_tree_1a028cb917b80a2825927926ff0c3162f6)`()` | 
+`public virtual void `[`insert`](#class-avl_tree_1a3fb2092257804dce707dc59cfca4588e)`(T value)` | Inserts element T in tree 
+`public virtual T `[`pop_front`](#class-avl_tree_1ae749686f1a9a369557493ab1635f7736)`()` | Removes item from the front of tree 
+`public virtual T `[`pop_back`](#class-avl_tree_1a4968ae8cb48b1460a61d424726f9ca8d)`()` | Removes item from the back of tree 
+`public bool `[`remove_by_key`](#class-avl_tree_1a769da0b8e5258c61469f63df3030a7bb)`(T key)` | Removes leaf if exists in tree, based on key 
+`public void `[`remove_by_index`](#class-avl_tree_1a9873338c9a1f2b710ffa45902880d02a)`(int index)` | Removes leaf if proper index is present aka index >=0 and index < container size 
+`public inline `[`avl_leaf`](#class-avl_leaf)`< T > * `[`get_data_avl`](#class-avl_tree_1a61951760ff5c5445616a6178e2cb2a3c)`()` | Simple function to return head of tree 
+
+## Members
+
+#### `public  `[`avl_tree`](#class-avl_tree_1ab89b9c8caa5f5d3f626816da593deae5)`() = default` 
+
+#### `public  `[`~avl_tree`](#class-avl_tree_1a028cb917b80a2825927926ff0c3162f6)`()` 
+
+#### `public virtual void `[`insert`](#class-avl_tree_1a3fb2092257804dce707dc59cfca4588e)`(T value)` 
+
+Inserts element T in tree 
+#### Parameters
+* `value` T type, note it will not be inserted if element with exact same value exists in tree 
+
+**See also**: [sorted_list](#class-sorted_list)
+
+#### `public virtual T `[`pop_front`](#class-avl_tree_1ae749686f1a9a369557493ab1635f7736)`()` 
+
+Removes item from the front of tree 
+**See also**: [sorted_list](#class-sorted_list)
+
+#### `public virtual T `[`pop_back`](#class-avl_tree_1a4968ae8cb48b1460a61d424726f9ca8d)`()` 
+
+Removes item from the back of tree 
+**See also**: [sorted_list](#class-sorted_list)
+
+#### `public bool `[`remove_by_key`](#class-avl_tree_1a769da0b8e5258c61469f63df3030a7bb)`(T key)` 
+
+Removes leaf if exists in tree, based on key 
+#### Parameters
+* `key` if value which is in tree, type T 
+
+#### Returns
+bool informing whether leaf was found and removed
+
+#### `public void `[`remove_by_index`](#class-avl_tree_1a9873338c9a1f2b710ffa45902880d02a)`(int index)` 
+
+Removes leaf if proper index is present aka index >=0 and index < container size 
+#### Parameters
+* `index` in sorted list
+
+#### `public inline `[`avl_leaf`](#class-avl_leaf)`< T > * `[`get_data_avl`](#class-avl_tree_1a61951760ff5c5445616a6178e2cb2a3c)`()` 
+
+Simple function to return head of tree 
+#### Returns
+pointer to [avl_tree](#class-avl_tree) with head of tree
 
 # class `bst` 
 
@@ -113,6 +200,13 @@ Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using 
 `public virtual bool `[`find`](#class-bst_1a5ffd4b9d5cfc8586be60d6c71b811580)`(T value)` | **See also**: [sorted_list](#class-sorted_list)
 `public virtual bool `[`clear`](#class-bst_1a730830b3771a2dbcc915f2b016291553)`()` | traverses over every element and delete it from memory 
 `public void `[`print`](#class-bst_1a35a5db649b6567824788babc5fc017ac)`()` | prints tree
+`public inline `[`leaf`](#class-leaf)`< T > * `[`get_data`](#class-bst_1ab73b6085e3ec6a7b52add5423b3bc680)`()` | 
+`protected `[`leaf`](#class-leaf)`< T > * `[`head`](#class-bst_1a40830df655527dbe19a228a2f645fa9b) | Head of the tree.
+`protected `[`leaf`](#class-leaf)`< T > * `[`find_leaf`](#class-bst_1adf7a4ed4addfa4ebe83b7d195fb03fdb)`(`[`leaf`](#class-leaf)`< T > * curr,T value)` | Used to find leaf in tree or check if element is in tree It's recursive so curr has to be in 
+`protected void `[`insert_rec`](#class-bst_1ac30200a837c85feb85bf17332eb08df8)`(`[`leaf`](#class-leaf)`< T > * curr,T value)` | Recursive function for inserting a value at its spot 
+`protected `[`leaf`](#class-leaf)`< T > * `[`traverse`](#class-bst_1aaeb19f1a3d88b693ee122cce58ed17aa)`(`[`leaf`](#class-leaf)`< T > * curr,int * curr_idx,int ideal_idx)` | Used to go on every element of the tree from left to right 
+`protected void `[`print`](#class-bst_1af0123633807e68a1fa9db630b3e7b4c0)`(`[`leaf`](#class-leaf)`< T > * curr)` | prints tree in linked-list way 
+`protected bool `[`clear_rec`](#class-bst_1a1adfa0712b130de1211b1ea6e2f34e4e)`(`[`leaf`](#class-leaf)`< T > * curr)` | Recursion func used to clear tree 
 
 ## Members
 
@@ -148,6 +242,56 @@ traverses over every element and delete it from memory
 #### `public void `[`print`](#class-bst_1a35a5db649b6567824788babc5fc017ac)`()` 
 
 prints tree
+
+#### `public inline `[`leaf`](#class-leaf)`< T > * `[`get_data`](#class-bst_1ab73b6085e3ec6a7b52add5423b3bc680)`()` 
+
+#### `protected `[`leaf`](#class-leaf)`< T > * `[`head`](#class-bst_1a40830df655527dbe19a228a2f645fa9b) 
+
+Head of the tree.
+
+#### `protected `[`leaf`](#class-leaf)`< T > * `[`find_leaf`](#class-bst_1adf7a4ed4addfa4ebe83b7d195fb03fdb)`(`[`leaf`](#class-leaf)`< T > * curr,T value)` 
+
+Used to find leaf in tree or check if element is in tree It's recursive so curr has to be in 
+#### Parameters
+* `value` of type T *self explanatory*
+
+* `curr` pointer of current leaf to be processed 
+
+#### Returns
+pointer to the leaf with value or nullptr otherwise
+
+#### `protected void `[`insert_rec`](#class-bst_1ac30200a837c85feb85bf17332eb08df8)`(`[`leaf`](#class-leaf)`< T > * curr,T value)` 
+
+Recursive function for inserting a value at its spot 
+#### Parameters
+* `curr` currently processed leaf 
+
+* `value`
+
+#### `protected `[`leaf`](#class-leaf)`< T > * `[`traverse`](#class-bst_1aaeb19f1a3d88b693ee122cce58ed17aa)`(`[`leaf`](#class-leaf)`< T > * curr,int * curr_idx,int ideal_idx)` 
+
+Used to go on every element of the tree from left to right 
+#### Parameters
+* `curr` as its recursive curr means the elem that it start on the first is head 
+
+* `curr_idx` 
+
+* `ideal_idx`
+
+#### `protected void `[`print`](#class-bst_1af0123633807e68a1fa9db630b3e7b4c0)`(`[`leaf`](#class-leaf)`< T > * curr)` 
+
+prints tree in linked-list way 
+#### Parameters
+* `curr`
+
+#### `protected bool `[`clear_rec`](#class-bst_1a1adfa0712b130de1211b1ea6e2f34e4e)`(`[`leaf`](#class-leaf)`< T > * curr)` 
+
+Recursion func used to clear tree 
+#### Parameters
+* `curr` pointer to currently processed leaf 
+
+#### Returns
+true if everything go as expected
 
 # class `container` 
 
@@ -195,6 +339,40 @@ Constructor in protected, only for child classes.
 #### `protected  `[`~container`](#class-container_1ab2d043b6e831f6ea7cd479604010a6ae)`() = default` 
 
 Destructor in protected, only for child classes.
+
+# class `leaf` 
+
+Tree leaf that is used in binary tree such as bst.
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public T `[`value`](#class-leaf_1ad62aea1d295528a977c56bc888b27bbc) | Stores value of type T.
+`public `[`leaf`](#class-leaf)` * `[`right`](#class-leaf_1ac6120956a242f3b30c8d7f5aa9c7d5c0) | Stores right leaf.
+`public `[`leaf`](#class-leaf)` * `[`left`](#class-leaf_1ac3f3deef0cada73b4382068fcf2628d4) | Stores left leaf.
+`public `[`leaf`](#class-leaf)` * `[`parent`](#class-leaf_1aa8c5bd1e2075bc1874b33401ec4b517c) | Stores parent leaf;.
+`public virtual  `[`~leaf`](#class-leaf_1a9c27c824106406c16a221bd75c064ba6)`() = default` | 
+
+## Members
+
+#### `public T `[`value`](#class-leaf_1ad62aea1d295528a977c56bc888b27bbc) 
+
+Stores value of type T.
+
+#### `public `[`leaf`](#class-leaf)` * `[`right`](#class-leaf_1ac6120956a242f3b30c8d7f5aa9c7d5c0) 
+
+Stores right leaf.
+
+#### `public `[`leaf`](#class-leaf)` * `[`left`](#class-leaf_1ac3f3deef0cada73b4382068fcf2628d4) 
+
+Stores left leaf.
+
+#### `public `[`leaf`](#class-leaf)` * `[`parent`](#class-leaf_1aa8c5bd1e2075bc1874b33401ec4b517c) 
+
+Stores parent leaf;.
+
+#### `public virtual  `[`~leaf`](#class-leaf_1a9c27c824106406c16a221bd75c064ba6)`() = default` 
 
 # class `link_vector` 
 
@@ -625,32 +803,6 @@ Replacing a value at certain index
 
 * `value` for what this should be replaced
 
-# struct `leaf` 
-
-Tree leaf that is used in binary tree such as bst.
-
-## Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public T `[`value`](#struct-leaf_1ad62aea1d295528a977c56bc888b27bbc) | Stores value of type T.
-`public `[`leaf`](#struct-leaf)` * `[`right`](#struct-leaf_1ac6120956a242f3b30c8d7f5aa9c7d5c0) | Stores right leaf.
-`public `[`leaf`](#struct-leaf)` * `[`left`](#struct-leaf_1ac3f3deef0cada73b4382068fcf2628d4) | Stores left leaf.
-
-## Members
-
-#### `public T `[`value`](#struct-leaf_1ad62aea1d295528a977c56bc888b27bbc) 
-
-Stores value of type T.
-
-#### `public `[`leaf`](#struct-leaf)` * `[`right`](#struct-leaf_1ac6120956a242f3b30c8d7f5aa9c7d5c0) 
-
-Stores right leaf.
-
-#### `public `[`leaf`](#struct-leaf)` * `[`left`](#struct-leaf_1ac3f3deef0cada73b4382068fcf2628d4) 
-
-Stores left leaf.
-
 # struct `node` 
 
 It's 2 way linked list. Stores: value, next node, previous node
@@ -711,4 +863,62 @@ Used only in stack as a (one) element container.
 
 #### `public `[`stack_node`](#struct-stack_node)`< T > * `[`previous`](#struct-stack_node_1ae7b0dd7caf3f2cbade60dad0857cc349) 
 
-Generated by [Moxygen](https://sourcey.com/moxygen)
+# namespace `utils`
+
+namespace with things that doesnt fit in class
+
+## Summary
+
+Members                        | Descriptions
+--------------------------------|---------------------------------------------
+`public template<>`  <br/>`int `[`get_height`](#namespaceutils_1aa19189f1cc7dcbefc37d8e0ddc327b04)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Gets height of leaf, if is not present returns 0
+`public template<>`  <br/>`int `[`calc_balance`](#namespaceutils_1abce3e9362c279c936f67b98b4c3aaf05)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Calculate balance value in node for self balancing avl. If node if nullptr returns 0.
+`public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a589ec122e7147f915137adeb5baa2475)`(`[`avl_tree`](#class-avl_tree)`< T > * node)`            |
+`public template<>`  <br/>`void `[`swap`](#namespaceutils_1ad8936b672533820fb7223ed0faec592b)`(`[`avl_tree`](#class-avl_tree)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`            |
+`public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a33f7ed1c5b5da579369bbcc7cee3d686)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Updates heights based on subtrees below. It needs to be run with <T> at end.
+`public template<>`  <br/>`void `[`swap`](#namespaceutils_1a0ea07ae28d26e260bf6eb5e6d70e8ea8)`(`[`avl_leaf`](#class-avl_leaf)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`            | Swaps two elements' values in avl tree
+`public template<>`  <br/>`T `[`max`](#namespaceutils_1a55316da8476b3df1966772443225c99c)`(T a1,T a2)`            |
+
+## Members
+
+#### `public template<>`  <br/>`int `[`get_height`](#namespaceutils_1aa19189f1cc7dcbefc37d8e0ddc327b04)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`
+
+Gets height of leaf, if is not present returns 0
+#### Parameters
+* `node` avl_leaf<T>* points to leaf from which height is taken
+
+#### Returns
+int with height of subtree or 0
+
+#### `public template<>`  <br/>`int `[`calc_balance`](#namespaceutils_1abce3e9362c279c936f67b98b4c3aaf05)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`
+
+Calculate balance value in node for self balancing avl. If node if nullptr returns 0.
+
+#### Parameters
+* `node` Leaf of which balance value should be calculated
+
+#### Returns
+int with balance
+
+#### `public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a589ec122e7147f915137adeb5baa2475)`(`[`avl_tree`](#class-avl_tree)`< T > * node)`
+
+#### `public template<>`  <br/>`void `[`swap`](#namespaceutils_1ad8936b672533820fb7223ed0faec592b)`(`[`avl_tree`](#class-avl_tree)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`
+
+#### `public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a33f7ed1c5b5da579369bbcc7cee3d686)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`
+
+Updates heights based on subtrees below. It needs to be run with <T> at end.
+#### Parameters
+* `T` type of objects in [avl_leaf](#class-avl_leaf)
+
+#### Parameters
+* `node` pointer to [avl_leaf](#class-avl_leaf) of which height will be updated
+
+#### `public template<>`  <br/>`void `[`swap`](#namespaceutils_1a0ea07ae28d26e260bf6eb5e6d70e8ea8)`(`[`avl_leaf`](#class-avl_leaf)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`
+
+Swaps two elements' values in avl tree
+#### Parameters
+* `f1` is pointer to first leaf
+
+* `f2` is pointer to second leaf
+
+#### `public template<>`  <br/>`T `[`max`](#namespaceutils_1a55316da8476b3df1966772443225c99c)`(T a1,T a2)`
