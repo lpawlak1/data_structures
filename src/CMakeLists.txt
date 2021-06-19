@@ -4,6 +4,6 @@ project(main)
 
 add_executable(main
         ${SOURCES}
-        main.cpp)
+        main.cpp priority_queue.hpp)
 
 

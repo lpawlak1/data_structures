@@ -4,16 +4,13 @@ project(tests_)
 enable_testing()
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 include_directories(headers)
+file(GLOB test_files "./*.cpp" "headers/*.h")
 
 add_executable(tests_
         source_gtest.cpp
         ${SOURCES}
-        link_gtest.cpp headers/link_gtest.h
-        queue_gtest.cpp headers/queue_gtest.h
-        vector_gtest.cpp headers/vector_gtest.h
-        stack_gtest.cpp headers/stack_gtest.h
-        bst_gtest.cpp headers/bst_gtest.h
-        avl_gtest.cpp headers/avl_gtest.h)
+        ${test_files}
+        )
 
 
 target_link_libraries(tests_ gtest gtest_main)
