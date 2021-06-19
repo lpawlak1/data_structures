@@ -86,9 +86,9 @@ namespace utils{
     template<typename T>
     int calc_balance(avl_leaf<T>* node);
     template<typename T>
-    void update_height(avl_tree<T>* node);
+    void update_height(avl_leaf<T>* node);
     template<typename T>
-    void swap(avl_tree<T>* f1, avl_leaf<T>* f2);
+    void swap_avl_node(avl_leaf<T>* f1, avl_leaf<T>* f2);
 
     /// Gets height of leaf, if is not present returns 0
     /// \param node avl_leaf<T>* points to leaf from which height is taken
@@ -122,7 +122,7 @@ namespace utils{
     /// \param f1 is pointer to first leaf
     /// \param f2 is pointer to second leaf
     template<typename T>
-    void swap(avl_leaf<T>* f1, avl_leaf<T>* f2){
+    void swap_avl_node(avl_leaf<T>* f1, avl_leaf<T>* f2){
         auto copy_value = f1->value;
         f1->value = f2->value;
         f2->value = copy_value;
@@ -350,7 +350,7 @@ void avl_tree<T>::remove_head(){
             cout << leaf->value << ", " << succesor->value << endl;
         }
 #endif
-        utils::swap<T>(static_cast<avl_leaf<T>*>(leaf), succesor);
+        utils::swap_avl_node<T>(static_cast<avl_leaf<T> *>(leaf), succesor);
         remove_leaf(succesor);
         rebalance_up(static_cast<avl_leaf<T> *>(leaf));
     }
@@ -409,7 +409,7 @@ void avl_tree<T>::remove_leaf(avl_leaf<T> *leaf){
             cout << leaf->value << ", " << succesor->value << endl;
         }
 #endif
-        utils::swap<T>(leaf, succesor);
+        utils::swap_avl_node<T>(leaf, succesor);
         remove_leaf(succesor);
         rebalance_up(static_cast<avl_leaf<T> *>(leaf));
     }

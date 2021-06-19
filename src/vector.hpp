@@ -58,8 +58,8 @@ template<typename T>
 void vector<T>::insert(int index,T value){
     if (index >= 0 && index < container::size_){
         int i = index;
-        int temp = value;
-        int temp2;
+        T temp = value;
+        T temp2;
         while(i<container::size_){
             temp2 = array_container<T>::tab_[i];
             array_container<T>::tab_[i] = temp;
@@ -75,6 +75,7 @@ void vector<T>::insert(int index,T value){
         throw std::out_of_range("Index out of range.");
     }
 }
+
 template<typename T>
 T vector<T>::pop(int index){
     if (index >= 0 && index < container::size_){

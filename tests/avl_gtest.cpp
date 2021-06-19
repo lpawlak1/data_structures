@@ -128,7 +128,7 @@ TEST(avl_tree_test, swap_test){
     auto* head = tree->get_data();
     auto val1 = head->right->value;
     auto val2 = head->left->value;
-    utils::swap((avl_leaf<int>*) head->right,(avl_leaf<int>*) head->left);
+    utils::swap_avl_node((avl_leaf<int>*) head->right,(avl_leaf<int>*) head->left);
     EXPECT_EQ(val1,head->left->value);
     EXPECT_EQ(val2,head->right->value);
     tree->print();
