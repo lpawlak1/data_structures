@@ -15,5 +15,7 @@ sed -i 's/structqueue__node/struct-queue_node/g' README.md
 sed -i 's/structstack__node/struct-stack_node/g' README.md
 sed -i 's/classavl__leaf/class-avl_leaf/g' README.md
 sed -i 's/classavl__tree/class-avl_tree/g' README.md
+sed -i 's/classpriority__queue/class-priority_queue/g' README.md
 rm -rf ./doxydoc
 
+# ![Structure](./data_structures.svg)

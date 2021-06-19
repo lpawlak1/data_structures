@@ -165,6 +165,38 @@ entity queue_node{
 +next: queue_node*
 }
 
+entity heap_node
+{
++value: T
++parent(): int
++right(): int
++left(): int
++change_priority(T value): T
+-pq : void*
+}
+
+class priority_queue{
++insert(T value): void
++pop(): T
++size(): int
++raw_data(): heap_node<T>**
++rebalance(int index): void
++top(): T
+--
+-swap_heap_nodes(int f1, int f2): void
+-balance_up(heap_node<T>* node): void
+-balance_down(heap_node<T>* node): void
+-min_heap: bool
+--^ container ^--
++clear(): bool
++size(): int
++empty(): bool
+}
+
+heap_node }|-- priority_queue
+vector <|-- priority_queue
+container <|-- priority_queue
+
 list <|-- link_vector
 container <|- array_container
 container <|-- stack
@@ -182,8 +214,6 @@ container <|-- bst
 
 bst <|-- avl_tree
 avl_leaf}|-- avl_tree
-sorted_list <|-- avl_tree
-container <|-- avl_tree
 
 leaf <-- avl_leaf
 @enduml

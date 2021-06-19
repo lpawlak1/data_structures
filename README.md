@@ -2,14 +2,17 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`namespace `[`utils`](#namespaceutils) | namespace with things that doesnt fit in class
 `class `[`array_container`](#class-array_container) | Interface for structures which uses arrays as base.
 `class `[`avl_leaf`](#class-avl_leaf) | Tree leaf that is used in avl tree In addition it has height
 `class `[`avl_tree`](#class-avl_tree) | Self Balancing Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
 `class `[`bst`](#class-bst) | Binary Search Tree with [sorted_list](#class-sorted_list) interface. It's using node like objects.
 `class `[`container`](#class-container) | Basic interface with basic info as size in it, used in all structures.
+`class `[`heap_node`](#classheap__node) | Element which is used in priority_queue->vector as element 
 `class `[`leaf`](#class-leaf) | Tree leaf that is used in binary tree such as bst.
 `class `[`link_vector`](#class-link_vector) | A class that forms a 2-way linked list using [. ](#struct-node)
 `class `[`list`](#class-list) | Interface for on-list operation with pure virtual methods and protected constructor and destructor
+`class `[`priority_queue`](#class-priority_queue) | Priority queue based on heap which is based on vector which holds heap_node<T>* Values don't need to be unique. If no min_heap value is passed to constructor it's made to be min heap 
 `class `[`queue`](#class-queue) | Basic LIFO structure that uses [queue_node](#struct-queue_node)
 `class `[`sorted_list`](#class-sorted_list) | Only reliable on sorted structures. Interface for on-list operation with pure virtual methods and protected constructor and destructor.
 `class `[`stack`](#class-stack) | Basic FIFO structure Uses [stack_node](#struct-stack_node) (one way node)
@@ -17,9 +20,62 @@
 `struct `[`node`](#struct-node) | It's 2 way linked list. Stores: value, next node, previous node
 `struct `[`queue_node`](#struct-queue_node) | Used only in queue as a (one) element container.
 `struct `[`stack_node`](#struct-stack_node) | Used only in stack as a (one) element container.
-`namespace `[`utils`](#namespaceutils) | namespace with things that doesnt fit in class
 
-![Structure](./data_structures.svg)
+![Structure](./data_structure.svg)
+
+# namespace `utils` 
+
+namespace with things that doesnt fit in class
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public template<>`  <br/>`int `[`get_height`](#namespaceutils_1aa19189f1cc7dcbefc37d8e0ddc327b04)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Gets height of leaf, if is not present returns 0 
+`public template<>`  <br/>`int `[`calc_balance`](#namespaceutils_1abce3e9362c279c936f67b98b4c3aaf05)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Calculate balance value in node for self balancing avl. If node if nullptr returns 0.
+`public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a33f7ed1c5b5da579369bbcc7cee3d686)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Updates heights based on subtrees below. It needs to be run with <T> at end. 
+`public template<>`  <br/>`void `[`swap_avl_node`](#namespaceutils_1ab90f95826b1ae92c9ec5c8d07d14b375)`(`[`avl_leaf`](#class-avl_leaf)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`            | Swaps two elements' values in avl tree 
+`public template<>`  <br/>`T `[`max`](#namespaceutils_1a55316da8476b3df1966772443225c99c)`(T a1,T a2)`            | 
+
+## Members
+
+#### `public template<>`  <br/>`int `[`get_height`](#namespaceutils_1aa19189f1cc7dcbefc37d8e0ddc327b04)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)` 
+
+Gets height of leaf, if is not present returns 0 
+#### Parameters
+* `node` avl_leaf<T>* points to leaf from which height is taken 
+
+#### Returns
+int with height of subtree or 0
+
+#### `public template<>`  <br/>`int `[`calc_balance`](#namespaceutils_1abce3e9362c279c936f67b98b4c3aaf05)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)` 
+
+Calculate balance value in node for self balancing avl. If node if nullptr returns 0.
+
+#### Parameters
+* `node` Leaf of which balance value should be calculated 
+
+#### Returns
+int with balance
+
+#### `public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a33f7ed1c5b5da579369bbcc7cee3d686)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)` 
+
+Updates heights based on subtrees below. It needs to be run with <T> at end. 
+#### Parameters
+* `T` type of objects in [avl_leaf](#class-avl_leaf)
+
+#### Parameters
+* `node` pointer to [avl_leaf](#class-avl_leaf) of which height will be updated
+
+#### `public template<>`  <br/>`void `[`swap_avl_node`](#namespaceutils_1ab90f95826b1ae92c9ec5c8d07d14b375)`(`[`avl_leaf`](#class-avl_leaf)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)` 
+
+Swaps two elements' values in avl tree 
+#### Parameters
+* `f1` is pointer to first leaf 
+
+* `f2` is pointer to second leaf
+
+#### `public template<>`  <br/>`T `[`max`](#namespaceutils_1a55316da8476b3df1966772443225c99c)`(T a1,T a2)` 
 
 # class `array_container` 
 
@@ -340,6 +396,58 @@ Constructor in protected, only for child classes.
 
 Destructor in protected, only for child classes.
 
+# class `heap_node` 
+
+Element which is used in priority_queue->vector as element 
+#### Parameters
+* `T` type of data stored in `value` field
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public T `[`value`](#classheap__node_1a9dd1edc98c5d0653acc9c317ddf9e640) | 
+`public int `[`index`](#classheap__node_1a4e3661742dbc7991cbe37350e19a561d) | 
+`public inline  `[`heap_node`](#classheap__node_1a07ca199028dfe6ea920329ceb1959b77)`(void * pq,int index,T value)` | The only constructor as nodes are created in [priority_queue](#class-priority_queue) with every field in it names in contructor as used under the same name in class (pq is private) 
+`public T `[`change_priority`](#classheap__node_1a6d57148329450ccddd9e1b1e820c3845)`(T new_value)` | Changes value in node and rebalances in heap 
+`public inline int `[`parent`](#classheap__node_1aaab5811fcaf6e1970040e94e80593010)`()` | 
+`public inline int `[`left`](#classheap__node_1a24276f7cb123a629d0f847419b7e19d8)`()` | 
+`public inline int `[`right`](#classheap__node_1ac8e76f8bde7bae559e76eb214f68359b)`()` | 
+`public  `[`~heap_node`](#classheap__node_1aae3014b27ec487c28cfd201ecf7f850d)`() = default` | 
+
+## Members
+
+#### `public T `[`value`](#classheap__node_1a9dd1edc98c5d0653acc9c317ddf9e640) 
+
+#### `public int `[`index`](#classheap__node_1a4e3661742dbc7991cbe37350e19a561d) 
+
+#### `public inline  `[`heap_node`](#classheap__node_1a07ca199028dfe6ea920329ceb1959b77)`(void * pq,int index,T value)` 
+
+The only constructor as nodes are created in [priority_queue](#class-priority_queue) with every field in it names in contructor as used under the same name in class (pq is private) 
+#### Parameters
+* `pq` pointer to heap in which [heap_node](#classheap__node) is stored 
+
+* `index` on which place element is stored in priority_queue->vector 
+
+* `value` proper value of element
+
+#### `public T `[`change_priority`](#classheap__node_1a6d57148329450ccddd9e1b1e820c3845)`(T new_value)` 
+
+Changes value in node and rebalances in heap 
+#### Parameters
+* `new_value` value that is replacement for previous value 
+
+#### Returns
+value that was previously stored in node
+
+#### `public inline int `[`parent`](#classheap__node_1aaab5811fcaf6e1970040e94e80593010)`()` 
+
+#### `public inline int `[`left`](#classheap__node_1a24276f7cb123a629d0f847419b7e19d8)`()` 
+
+#### `public inline int `[`right`](#classheap__node_1ac8e76f8bde7bae559e76eb214f68359b)`()` 
+
+#### `public  `[`~heap_node`](#classheap__node_1aae3014b27ec487c28cfd201ecf7f850d)`() = default` 
+
 # class `leaf` 
 
 Tree leaf that is used in binary tree such as bst.
@@ -538,6 +646,142 @@ Used to make constructor protected.
 #### `protected  `[`~list`](#class-list_1ab988ead8591246fc136101e27d9a137d)`() = default` 
 
 Used to make destructor protected.
+
+# class `priority_queue` 
+
+```
+class priority_queue
+  : private vector< heap_node< T > * >
+  : public container
+```  
+
+Priority queue based on heap which is based on vector which holds heap_node<T>* Values don't need to be unique. If no min_heap value is passed to constructor it's made to be min heap 
+**See also**: [heap_node](#classheap__node)
+
+**See also**: [vector](#class-vector)
+
+#### Parameters
+* `T` type of stored elements it needs to implements `operator<()` and `operator>()`
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public  `[`priority_queue`](#class-priority_queue_1a9b579dedf04d3eeda39e29cd4764efad)`() = default` | Default constructor.
+`public inline  explicit `[`priority_queue`](#class-priority_queue_1af4a123b866db28bd546ce8aec3d40fe6)`(int initial_size)` | Constructor with initial_size of array containing elements 
+`public inline  `[`priority_queue`](#class-priority_queue_1a4a2eddd75ccddf35e097493798876ffa)`(int initial_size,bool min_heap)` | Constructor with both arguments initial_size and min_heap 
+`public inline  explicit `[`priority_queue`](#class-priority_queue_1a36c01b8644b3044c1eb6982cef7d14d8)`(bool min_heap)` | Constructor with one bool information 
+`public inline  `[`~priority_queue`](#class-priority_queue_1a766a54c5c5c670a164a2972533b92662)`()` | 
+`public void `[`insert`](#class-priority_queue_1a158fe890d596307ae702de15c898bca0)`(T value)` | Inserts element in heap 
+`public T `[`pop`](#class-priority_queue_1a8fd4e870275678e010a0a479a2d47e32)`()` | pops element that is on top of heap 
+`public inline int `[`size`](#class-priority_queue_1aa4bd90693a440ea67adca5d64ab41513)`()` | Checks for size of data 
+`public inline bool `[`empty`](#class-priority_queue_1a18d68163a624bfc7668af23abe054682)`()` | Checks whether heap is empty 
+`public inline virtual bool `[`clear`](#class-priority_queue_1ad3ccf2717119bf43974644ef634ec2ef)`()` | Removes every node from tab.
+`public inline `[`heap_node`](#classheap__node)`< T > ** `[`raw_data`](#class-priority_queue_1ad1adf4cc7dd84d1ea71bd630f73ac0dd)`()` | Function for having data from heap in an array 
+`public inline void `[`rebalance`](#class-priority_queue_1a27f679b2a085b377e77d816031b37fff)`(int index)` | Balances heap from point given - used when element changes in heap and when you insert or pop and element 
+`public inline T `[`top`](#class-priority_queue_1affcbed7d3abd07705ae901f83fc755de)`()` | Function for taking top element without having to pop it 
+`protected bool `[`min_heap`](#class-priority_queue_1af21428fad84cd3dcf9109d9d8ba11e7f) | value in which information on relation is stored (whether it's min heap(true) or max heap(max))
+`protected inline void `[`swap_heap_nodes`](#class-priority_queue_1a481f54714cff1581fe297b5a72d6f546)`(int f1,int f2)` | Swaps elements in heap from 2 indexes 
+`protected void `[`balance_up`](#class-priority_queue_1a1f73e3b447f40231e258280a152ff608)`(`[`heap_node`](#classheap__node)`< T > * node)` | Balances the heap from index going thru parents 
+`protected void `[`balance_down`](#class-priority_queue_1a86ca6ee342e6f1fd88ba8dc59c2e6bca)`(`[`heap_node`](#classheap__node)`< T > * node)` | Balances the heap from index going thru childs 
+
+## Members
+
+#### `public  `[`priority_queue`](#class-priority_queue_1a9b579dedf04d3eeda39e29cd4764efad)`() = default` 
+
+Default constructor.
+
+#### `public inline  explicit `[`priority_queue`](#class-priority_queue_1af4a123b866db28bd546ce8aec3d40fe6)`(int initial_size)` 
+
+Constructor with initial_size of array containing elements 
+#### Parameters
+* `initial_size` int with size of array at start
+
+#### `public inline  `[`priority_queue`](#class-priority_queue_1a4a2eddd75ccddf35e097493798876ffa)`(int initial_size,bool min_heap)` 
+
+Constructor with both arguments initial_size and min_heap 
+#### Parameters
+* `initial_size` int with size of array at start 
+
+* `min_heap` bool whether this should be min heap (true) or max heap (false)
+
+#### `public inline  explicit `[`priority_queue`](#class-priority_queue_1a36c01b8644b3044c1eb6982cef7d14d8)`(bool min_heap)` 
+
+Constructor with one bool information 
+#### Parameters
+* `min_heap` bool whether this should be min heap (true) or max heap (false)
+
+#### `public inline  `[`~priority_queue`](#class-priority_queue_1a766a54c5c5c670a164a2972533b92662)`()` 
+
+#### `public void `[`insert`](#class-priority_queue_1a158fe890d596307ae702de15c898bca0)`(T value)` 
+
+Inserts element in heap 
+#### Parameters
+* `value` value that has to be inserted
+
+#### `public T `[`pop`](#class-priority_queue_1a8fd4e870275678e010a0a479a2d47e32)`()` 
+
+pops element that is on top of heap 
+#### Returns
+value of type T
+
+#### `public inline int `[`size`](#class-priority_queue_1aa4bd90693a440ea67adca5d64ab41513)`()` 
+
+Checks for size of data 
+#### Returns
+number of records in container
+
+#### `public inline bool `[`empty`](#class-priority_queue_1a18d68163a624bfc7668af23abe054682)`()` 
+
+Checks whether heap is empty 
+#### Returns
+bool with certain information
+
+#### `public inline virtual bool `[`clear`](#class-priority_queue_1ad3ccf2717119bf43974644ef634ec2ef)`()` 
+
+Removes every node from tab.
+
+#### `public inline `[`heap_node`](#classheap__node)`< T > ** `[`raw_data`](#class-priority_queue_1ad1adf4cc7dd84d1ea71bd630f73ac0dd)`()` 
+
+Function for having data from heap in an array 
+#### Returns
+whole array with heap
+
+#### `public inline void `[`rebalance`](#class-priority_queue_1a27f679b2a085b377e77d816031b37fff)`(int index)` 
+
+Balances heap from point given - used when element changes in heap and when you insert or pop and element 
+#### Parameters
+* `index` where to start balancing
+
+#### `public inline T `[`top`](#class-priority_queue_1affcbed7d3abd07705ae901f83fc755de)`()` 
+
+Function for taking top element without having to pop it 
+#### Returns
+minimal(min heap)/maximal(max heap) element in heap
+
+#### `protected bool `[`min_heap`](#class-priority_queue_1af21428fad84cd3dcf9109d9d8ba11e7f) 
+
+value in which information on relation is stored (whether it's min heap(true) or max heap(max))
+
+#### `protected inline void `[`swap_heap_nodes`](#class-priority_queue_1a481f54714cff1581fe297b5a72d6f546)`(int f1,int f2)` 
+
+Swaps elements in heap from 2 indexes 
+#### Parameters
+* `f1` index of first element 
+
+* `f2` index of second element
+
+#### `protected void `[`balance_up`](#class-priority_queue_1a1f73e3b447f40231e258280a152ff608)`(`[`heap_node`](#classheap__node)`< T > * node)` 
+
+Balances the heap from index going thru parents 
+#### Parameters
+* `node` from which should balancing start
+
+#### `protected void `[`balance_down`](#class-priority_queue_1a86ca6ee342e6f1fd88ba8dc59c2e6bca)`(`[`heap_node`](#classheap__node)`< T > * node)` 
+
+Balances the heap from index going thru childs 
+#### Parameters
+* `node` from which should balancing strart
 
 # class `queue` 
 
@@ -863,62 +1107,4 @@ Used only in stack as a (one) element container.
 
 #### `public `[`stack_node`](#struct-stack_node)`< T > * `[`previous`](#struct-stack_node_1ae7b0dd7caf3f2cbade60dad0857cc349) 
 
-# namespace `utils`
-
-namespace with things that doesnt fit in class
-
-## Summary
-
-Members                        | Descriptions
---------------------------------|---------------------------------------------
-`public template<>`  <br/>`int `[`get_height`](#namespaceutils_1aa19189f1cc7dcbefc37d8e0ddc327b04)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Gets height of leaf, if is not present returns 0
-`public template<>`  <br/>`int `[`calc_balance`](#namespaceutils_1abce3e9362c279c936f67b98b4c3aaf05)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Calculate balance value in node for self balancing avl. If node if nullptr returns 0.
-`public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a589ec122e7147f915137adeb5baa2475)`(`[`avl_tree`](#class-avl_tree)`< T > * node)`            |
-`public template<>`  <br/>`void `[`swap`](#namespaceutils_1ad8936b672533820fb7223ed0faec592b)`(`[`avl_tree`](#class-avl_tree)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`            |
-`public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a33f7ed1c5b5da579369bbcc7cee3d686)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`            | Updates heights based on subtrees below. It needs to be run with <T> at end.
-`public template<>`  <br/>`void `[`swap`](#namespaceutils_1a0ea07ae28d26e260bf6eb5e6d70e8ea8)`(`[`avl_leaf`](#class-avl_leaf)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`            | Swaps two elements' values in avl tree
-`public template<>`  <br/>`T `[`max`](#namespaceutils_1a55316da8476b3df1966772443225c99c)`(T a1,T a2)`            |
-
-## Members
-
-#### `public template<>`  <br/>`int `[`get_height`](#namespaceutils_1aa19189f1cc7dcbefc37d8e0ddc327b04)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`
-
-Gets height of leaf, if is not present returns 0
-#### Parameters
-* `node` avl_leaf<T>* points to leaf from which height is taken
-
-#### Returns
-int with height of subtree or 0
-
-#### `public template<>`  <br/>`int `[`calc_balance`](#namespaceutils_1abce3e9362c279c936f67b98b4c3aaf05)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`
-
-Calculate balance value in node for self balancing avl. If node if nullptr returns 0.
-
-#### Parameters
-* `node` Leaf of which balance value should be calculated
-
-#### Returns
-int with balance
-
-#### `public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a589ec122e7147f915137adeb5baa2475)`(`[`avl_tree`](#class-avl_tree)`< T > * node)`
-
-#### `public template<>`  <br/>`void `[`swap`](#namespaceutils_1ad8936b672533820fb7223ed0faec592b)`(`[`avl_tree`](#class-avl_tree)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`
-
-#### `public template<>`  <br/>`void `[`update_height`](#namespaceutils_1a33f7ed1c5b5da579369bbcc7cee3d686)`(`[`avl_leaf`](#class-avl_leaf)`< T > * node)`
-
-Updates heights based on subtrees below. It needs to be run with <T> at end.
-#### Parameters
-* `T` type of objects in [avl_leaf](#class-avl_leaf)
-
-#### Parameters
-* `node` pointer to [avl_leaf](#class-avl_leaf) of which height will be updated
-
-#### `public template<>`  <br/>`void `[`swap`](#namespaceutils_1a0ea07ae28d26e260bf6eb5e6d70e8ea8)`(`[`avl_leaf`](#class-avl_leaf)`< T > * f1,`[`avl_leaf`](#class-avl_leaf)`< T > * f2)`
-
-Swaps two elements' values in avl tree
-#### Parameters
-* `f1` is pointer to first leaf
-
-* `f2` is pointer to second leaf
-
-#### `public template<>`  <br/>`T `[`max`](#namespaceutils_1a55316da8476b3df1966772443225c99c)`(T a1,T a2)`
+Generated by [Moxygen](https://sourcey.com/moxygen)
