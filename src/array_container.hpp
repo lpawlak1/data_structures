@@ -51,7 +51,7 @@ protected:
 template<typename T>
 T* array_container<T>::rewrite_append(T value)
 {
-    int* tab =  this -> rewrite(array_container<T>::container_size_*2,0);
+    T* tab =  this -> rewrite(array_container<T>::container_size_*2,0);
     tab[container::size_] = value;
     container::size_++;
     return tab;
@@ -59,7 +59,7 @@ T* array_container<T>::rewrite_append(T value)
 
 template<typename T>
 T* array_container<T>::rewrite(int new_size, int first_index){
-    int* ret = new int[new_size];
+    T* ret = new T[new_size];
     int j = 0;
     for (int i = first_index;i < new_size && i < container::size_;i++){
         ret[j] = array_container<T>::tab_[i];
@@ -81,14 +81,14 @@ bool array_container<T>::clear(){
 template<typename T>
 array_container<T>::array_container() {
     this->initial_size_ = DEF_INIT_SIZE;
-    this->tab_ = new int[initial_size_];
+    this->tab_ = new T[initial_size_];
     this->container_size_ = initial_size_;
 }
 
 template<typename T>
 array_container<T>::array_container(int initial_size) {
     this->initial_size_ = initial_size;
-    this->tab_ = new int[initial_size_];
+    this->tab_ = new T[initial_size_];
     this->container_size_ = initial_size_;
 }
 
