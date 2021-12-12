@@ -17,11 +17,11 @@ class container{
     public:
         /// Method to show how much data it holds
         /// \return integer of size
-        int size() const {return size_;};
+        int size() const { return size_;};
 
         /// Check if container is empty
         /// \return bool meaning what the state is
-        bool empty() const{return (size_ == 0);};
+        bool empty() const { return (size_ == 0);};
 
         /// Used to delete every element in container, is pure-virtual and implemented in child classes
         /// \return bool of success

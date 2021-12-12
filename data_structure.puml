@@ -195,7 +195,6 @@ class priority_queue{
 
 heap_node }|-- priority_queue
 vector <|-- priority_queue
-container <|-- priority_queue
 
 list <|-- link_vector
 container <|- array_container

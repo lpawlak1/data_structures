@@ -47,7 +47,7 @@ private:
 /// \see vector
 /// \tparam T type of stored elements it needs to implements `operator<()` and `operator>()`
 template<typename T>
-class priority_queue : private vector<heap_node<T>*>, public container{
+class priority_queue : public vector<heap_node<T>*>{
 public:
     /// Default constructor
     priority_queue() = default;;
@@ -86,14 +86,14 @@ public:
 
     /// Checks for size of data
     /// \return number of records in container
-    int size() override {return vector<heap_node<T>*>::size();}
+    int size() {return vector<heap_node<T>*>::size();}
 
     /// Checks whether heap is empty
     /// \return bool with certain information
-    bool empty() override {return this->size() == 0;}
+    bool empty() {return this->size() == 0;}
 
     /// Removes every node from tab
-    bool clear() override {return vector<heap_node<T>*>::clear();}
+    bool clear() {return vector<heap_node<T>*>::clear();}
 
     /// Function for having data from heap in an array
     /// \return whole array with heap
